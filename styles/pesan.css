@@ -1,0 +1,147 @@
+/* Dibuat otomatis dari prototipe/css/pesan.css oleh scripts/scope-css.mjs. Jangan diedit langsung. */
+/* Halaman detail pesan (pesan-ds-*.html dan pesan-ts-*.html) memakai index.css untuk navbar,
+   kotak, tombol, dan footer. File ini hanya berisi tambahan khusus halaman ini. Tanpa JavaScript. */
+
+.h-pesan .hero.banner {
+  padding: 90px 6vw calc(90px + var(--gelombang));
+}
+.h-pesan .kembali {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.h-pesan .dua-kolom {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* lebar kolom: ubah jadi 1fr 1.2fr kalau form mau lebih lebar */
+  gap: 16px;
+  align-items: start;
+}
+.h-pesan .dua-kolom > * {
+  min-width: 0; /* cegah kolom melebar melewati layar di HP */
+}
+.h-pesan .kecil {
+  font-size: 12px;
+  color: #666;
+}
+
+/* ===== FOTO MOBIL (klik foto kecil untuk memperbesar, tanpa JavaScript) =====
+   Radio tersembunyi harus berada sebelum .foto-besar dan .galeri-kecil. */
+.h-pesan .radio-foto {
+  display: none;
+}
+.h-pesan .fu {
+  display: none;
+  width: 100%;
+  height: 260px; /* TINGGI foto utama: ubah angka ini */
+  object-fit: contain;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fbe6d3, #f0b98a);
+}
+.h-pesan #foto0:checked ~ .foto-besar .fu0,
+.h-pesan #foto1:checked ~ .foto-besar .fu1,
+.h-pesan #foto2:checked ~ .foto-besar .fu2,
+.h-pesan #foto3:checked ~ .foto-besar .fu3,
+.h-pesan #foto4:checked ~ .foto-besar .fu4,
+.h-pesan #foto5:checked ~ .foto-besar .fu5,
+.h-pesan #foto6:checked ~ .foto-besar .fu6,
+.h-pesan #foto7:checked ~ .foto-besar .fu7 {
+  display: block;
+}
+.h-pesan .galeri-kecil {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+.h-pesan .kecil-foto {
+  display: block;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+.h-pesan .kecil-foto img {
+  width: 100%;
+  height: 70px; /* TINGGI foto kecil: ubah angka ini */
+  object-fit: contain;
+  display: block;
+  background: #e8a672;
+}
+.h-pesan #foto0:checked ~ .galeri-kecil .kf0,
+.h-pesan #foto1:checked ~ .galeri-kecil .kf1,
+.h-pesan #foto2:checked ~ .galeri-kecil .kf2,
+.h-pesan #foto3:checked ~ .galeri-kecil .kf3,
+.h-pesan #foto4:checked ~ .galeri-kecil .kf4,
+.h-pesan #foto5:checked ~ .galeri-kecil .kf5,
+.h-pesan #foto6:checked ~ .galeri-kecil .kf6,
+.h-pesan #foto7:checked ~ .galeri-kecil .kf7 {
+  border-color: #dc6e27;
+}
+
+/* ===== FORM ===== */
+.h-pesan label {
+  font-weight: 500;
+  font-size: 13px;
+  display: block;
+}
+.h-pesan input,
+.h-pesan select,
+.h-pesan textarea {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font: inherit;
+  margin: 3px 0 12px;
+}
+.h-pesan input[type="checkbox"],
+.h-pesan input[type="radio"] {
+  width: auto;
+  margin: 0 8px 0 0;
+}
+.h-pesan .cek {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.h-pesan .cek label {
+  font-weight: 400;
+  font-size: 14px;
+}
+.h-pesan .syarat {
+  background: #fff4ea;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 12px;
+  margin: 6px 0 12px;
+}
+.h-pesan .ringkasan {
+  background: #fff4ea;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 12px 0;
+}
+.h-pesan form .btn {
+  border: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .h-pesan .dua-kolom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .h-pesan .hero.banner {
+    padding: 60px 9vw calc(60px + var(--gelombang));
+  }
+  .h-pesan .fu {
+    height: 200px;
+  }
+}
+
+/* cara terima unit tanpa JavaScript */
+.h-pesan form:has(#ambil-kantor:checked) .lokasi-antar{display:none}
+.h-pesan form:has(#diantar:checked) .info-kantor{display:none}

@@ -1,0 +1,312 @@
+/* Dibuat otomatis dari prototipe/css/admin.css oleh scripts/scope-css.mjs. Jangan diedit langsung. */
+/* =========================================================
+   admin.css : tampilan admin (berdiri sendiri, tidak memuat index.css)
+   Mengikuti Figma admin: sidebar gelap untuk halaman daftar,
+   bilah atas untuk halaman detail dan form. Tanpa JavaScript.
+   ========================================================= */
+.h-admin, .h-admin * { box-sizing: border-box; }
+.h-admin {
+  margin: 0;
+  font: 400 14px/1.6 "Poppins", sans-serif;
+  background: #f3f1ec;
+  color: #1f1a16;
+}
+.h-admin a { color: inherit; }
+.h-admin img { max-width: 100%; }
+.h-admin h1, .h-admin h2, .h-admin h3 { margin: 0 0 0.4em; line-height: 1.25; }
+.h-admin h1 { font-size: 28px; }
+.h-admin h2 { font-size: 20px; }
+.h-admin h3 { font-size: 16px; }
+.h-admin p { margin: 0 0 0.8em; }
+.h-admin :focus-visible { outline: 3px solid #dc6e27; outline-offset: 2px; }
+.h-admin .abu { color: #6b6259; }
+.h-admin .kecil { font-size: 12px; }
+.h-admin .tebal { font-weight: 600; }
+.h-admin .tengah { text-align: center; }
+.h-admin .tautan { color: #b9571a; font-weight: 500; }
+.h-admin .baris { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.h-admin .baris.sebar { justify-content: space-between; }
+.h-admin .jarak { margin-top: 24px; }
+
+/* ----- kerangka dengan sidebar ----- */
+.h-admin .app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.h-admin .side {
+  background: #1b1b1b; color: #cfc8c0; padding: 22px 16px;
+  display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh;
+}
+.h-admin .side .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 600; text-decoration: none; margin-bottom: 28px; line-height: 1.2; }
+.h-admin .side .brand img { height: 38px; width: auto; }
+.h-admin .side .brand small { display: block; font-weight: 400; color: #9d958c; font-size: 11px; }
+.h-admin .side nav a { display: block; padding: 10px 14px; border-radius: 8px; text-decoration: none; margin-bottom: 4px; }
+.h-admin .side nav a:hover { background: #2a2a2a; color: #fff; }
+.h-admin .side nav a.aktif { background: #dc6e27; color: #fff; }
+.h-admin .side .keluar { margin-top: auto; }
+.h-admin .side .keluar a { display: block; padding: 9px 14px; border: 1px solid #555; border-radius: 8px; text-align: center; text-decoration: none; color: #e9e4de; }
+.h-admin .side .keluar a:hover { background: #2a2a2a; }
+.h-admin .main { padding: 32px 40px 64px; min-width: 0; }
+.h-admin .main > header { margin-bottom: 20px; }
+.h-admin .main > header p { color: #6b6259; margin: 0; }
+
+/* ----- kerangka dengan bilah atas (detail dan form) ----- */
+.h-admin .topbar { background: #fff; border-bottom: 1px solid #e3ddd4; padding: 10px 40px; display: flex; align-items: center; gap: 16px; }
+.h-admin .topbar .brand { display: flex; align-items: center; margin-right: auto; text-decoration: none; }
+.h-admin .topbar .brand img { height: 36px; }
+.h-admin .topbar .peran { color: #6b6259; }
+.h-admin .halaman { max-width: 1040px; margin: 0 auto; padding: 24px 24px 64px; }
+.h-admin .kembali { display: inline-block; margin-bottom: 14px; font-weight: 500; text-decoration: none; color: #b9571a; }
+.h-admin .kepala-halaman { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+.h-admin .kepala-halaman h1 { margin-bottom: 2px; }
+
+/* ----- tombol ----- */
+.h-admin .btn {
+  display: inline-block; padding: 9px 20px; border: 1.5px solid #dc6e27; border-radius: 8px;
+  background: #dc6e27; color: #fff; font: 600 14px "Poppins", sans-serif; text-decoration: none; cursor: pointer; text-align: center;
+}
+.h-admin .btn:hover { background: #b9571a; border-color: #b9571a; }
+.h-admin .btn.garis { background: #fff; color: #1f1a16; border-color: #1f1a16; }
+.h-admin .btn.garis:hover { background: #1f1a16; color: #fff; }
+.h-admin .btn.bahaya { background: #fff; color: #c0392b; border-color: #c0392b; }
+.h-admin .btn.bahaya:hover { background: #c0392b; color: #fff; }
+.h-admin .btn.sm { padding: 5px 14px; font-size: 13px; }
+.h-admin .btn.blok { display: block; width: 100%; }
+
+/* ----- kartu, statistik ----- */
+.h-admin .kartu { background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 6px rgba(40, 25, 10, 0.1); margin-bottom: 18px; }
+.h-admin .kartu > h2:first-child, .h-admin .kartu > h3:first-child { margin-bottom: 4px; }
+.h-admin .kartu > .ket { color: #6b6259; font-size: 13px; margin-bottom: 14px; }
+.h-admin .grid { display: grid; gap: 18px; }
+.h-admin .grid-2 { grid-template-columns: repeat(2, 1fr); }
+.h-admin .grid-3 { grid-template-columns: repeat(3, 1fr); }
+.h-admin .grid-4 { grid-template-columns: repeat(4, 1fr); }
+.h-admin .grid-5 { grid-template-columns: repeat(5, 1fr); }
+.h-admin .grid.mulai { align-items: start; }
+.h-admin .grid > .kartu { margin-bottom: 0; }
+.h-admin .stat { padding: 16px 20px; }
+.h-admin .stat .label { color: #6b6259; font-size: 12px; }
+.h-admin .stat .angka { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.h-admin .stat .ket { color: #6b6259; font-size: 12px; margin: 0; }
+.h-admin .stat.warna { background: #ffe9d6; }
+
+/* ----- tabel ----- */
+.h-admin .tabel-bungkus { overflow-x: auto; }
+.h-admin .tabel { width: 100%; border-collapse: collapse; }
+.h-admin .tabel th, .h-admin .tabel td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #ece6dd; vertical-align: top; }
+.h-admin .tabel th { font-size: 12px; color: #6b6259; font-weight: 600; white-space: nowrap; }
+.h-admin .tabel tr:last-child td { border-bottom: 0; }
+.h-admin .tabel .angka { text-align: right; white-space: nowrap; }
+.h-admin .tabel tr.total td { font-weight: 700; }
+.h-admin .tabel input, .h-admin .tabel select { margin: 0; }
+
+/* ----- badge ----- */
+.h-admin .badge { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.h-admin .menunggu, .h-admin .pengajuan, .h-admin .segera { background: #fff3c4; color: #8a6d00; }
+.h-admin .dikonfirmasi, .h-admin .tersedia, .h-admin .aman { background: #d4f4dd; color: #1e7a3a; }
+.h-admin .berjalan, .h-admin .disewa { background: #d6e8ff; color: #1d5fb4; }
+.h-admin .selesai, .h-admin .netral { background: #e5e5e5; color: #555; }
+.h-admin .dibatalkan, .h-admin .perlu { background: #fbd5d5; color: #a11; }
+.h-admin .servis { background: #ead9f7; color: #5f2a8a; }
+
+/* ----- form ----- */
+.h-admin label { display: block; font-weight: 500; font-size: 13px; }
+.h-admin input, .h-admin select, .h-admin textarea {
+  width: 100%; padding: 9px 12px; border: 1px solid #cfc6bb; border-radius: 8px; font: inherit; background: #fff; color: #1f1a16; margin: 3px 0 12px;
+}
+.h-admin textarea { resize: vertical; min-height: 70px; }
+.h-admin input:focus, .h-admin select:focus, .h-admin textarea:focus { border-color: #dc6e27; outline: 2px solid #dc6e27; outline-offset: 0; }
+.h-admin input:user-invalid, .h-admin select:user-invalid { border-color: #c0392b; }
+.h-admin input[type="checkbox"], .h-admin input[type="radio"] { width: auto; margin: 0 8px 0 0; accent-color: #dc6e27; }
+.h-admin .cek { display: flex; align-items: flex-start; margin-bottom: 8px; }
+.h-admin .cek input { margin-top: 5px; }
+.h-admin .cek label { font-weight: 400; font-size: 14px; }
+.h-admin .hint { font-size: 12px; color: #6b6259; margin: -6px 0 12px; }
+.h-admin .kolom-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.h-admin .kolom-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 16px; }
+.h-admin .kolom-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 16px; }
+.h-admin .langkah-judul { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.h-admin .langkah-judul .no { width: 28px; height: 28px; border-radius: 50%; background: #dc6e27; color: #fff; font-weight: 700; display: grid; place-items: center; font-size: 14px; flex-shrink: 0; }
+.h-admin .langkah-judul h2 { margin: 0; }
+
+/* ----- alert ----- */
+.h-admin .alert { padding: 12px 16px; border-radius: 10px; margin-bottom: 14px; font-size: 13px; border: 1px solid transparent; }
+.h-admin .alert.galat { background: #fdecea; color: #c0392b; border-color: #f2b8b1; }
+.h-admin .alert.sukses { background: #e3f6ea; color: #1e7a3a; border-color: #b5e2c7; }
+.h-admin .alert.info { background: #e4effb; color: #1d5fb4; border-color: #bcd6f1; }
+.h-admin .alert.peringatan { background: #fff3c4; color: #8a6d00; border-color: #ecd68a; }
+.h-admin .alert strong { display: block; }
+.h-admin .alert ul { margin: 6px 0 0; padding-left: 18px; }
+.h-admin .kosong { text-align: center; padding: 40px 20px; }
+.h-admin .kosong .ikon { font-size: 40px; line-height: 1; margin-bottom: 8px; }
+.h-admin .demo { margin-top: 24px; padding: 14px 16px; border: 2px dashed #b3a595; border-radius: 12px; background: rgba(255, 255, 255, 0.55); }
+.h-admin .demo > .judul { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6b6259; margin-bottom: 10px; }
+.h-admin .demo .alert:last-child { margin-bottom: 0; }
+
+/* ----- filter / chip ----- */
+.h-admin .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.h-admin .chip { padding: 5px 16px; border-radius: 999px; background: #fff; border: 1px solid #d8d0c5; text-decoration: none; font-size: 13px; font-weight: 500; }
+.h-admin .chip.aktif { background: #dc6e27; border-color: #dc6e27; color: #fff; }
+.h-admin .filter { display: flex; gap: 16px; align-items: end; flex-wrap: wrap; }
+.h-admin .filter > div { min-width: 180px; }
+
+/* ----- detail pesanan ----- */
+.h-admin .tahap { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; margin: 10px 0 4px; align-items: center; }
+.h-admin .tahap i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #ccc; margin-right: 5px; }
+.h-admin .tahap i.on { background: #dc6e27; }
+.h-admin .data-baris { display: grid; grid-template-columns: 170px 1fr; gap: 6px 14px; margin: 0; }
+.h-admin .data-baris dt { color: #6b6259; }
+.h-admin .data-baris dd { margin: 0; font-weight: 500; }
+.h-admin .plat { display: inline-block; padding: 1px 12px; border: 2px solid #1f1a16; border-radius: 6px; font-weight: 700; letter-spacing: 0.1em; background: #fff; }
+.h-admin .aksi { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.h-admin .timeline { list-style: none; padding: 0; margin: 0; }
+.h-admin .timeline li { padding: 0 0 14px 20px; border-left: 2px solid #e3ddd4; position: relative; margin-left: 6px; }
+.h-admin .timeline li::before { content: ""; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #dc6e27; }
+.h-admin .timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.h-admin .timeline time { display: block; font-size: 12px; color: #6b6259; }
+.h-admin .ringkasan { background: #fff4ea; border-radius: 10px; padding: 14px 16px; }
+.h-admin .ringkasan .baris { justify-content: space-between; margin-bottom: 2px; gap: 8px; }
+.h-admin .ringkasan .total { border-top: 1px dashed #b08e76; margin-top: 8px; padding-top: 8px; font-weight: 700; font-size: 16px; }
+.h-admin .kotak-jaminan { background: #fff8f1; border: 1px solid #ece0d2; border-radius: 10px; padding: 12px 16px 6px; margin-bottom: 12px; }
+
+/* ----- modal statis (:target) ----- */
+.h-admin .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(30, 15, 5, 0.55); align-items: center; justify-content: center; }
+.h-admin .modal:target { display: flex; }
+.h-admin .modal .isi { background: #fff; border-radius: 14px; padding: 26px; width: 460px; max-width: 92vw; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35); }
+.h-admin .modal .baris { justify-content: flex-end; margin-top: 16px; }
+
+/* ----- foto mobil kecil ----- */
+.h-admin .thumb { width: 72px; height: 48px; object-fit: contain; background: #f3f1ec; border-radius: 6px; vertical-align: middle; }
+.h-admin .tab-link { display: flex; gap: 8px; margin-bottom: 14px; }
+
+/* =========================================================
+   RESPONSIF (tablet dan HP)
+   Sebelumnya admin.css belum punya media query sehingga
+   statistik, tabel, dan form keluar layar di HP.
+   ========================================================= */
+.h-admin .grid-6 { grid-template-columns: repeat(6, 1fr); }
+.h-admin .side .bawah { margin-top: auto; display: grid; gap: 8px; }
+.h-admin .side .bawah .keluar { margin-top: 0; }
+.h-admin .side .sandi { display: block; padding: 9px 14px; border-radius: 8px; text-decoration: none; color: #cfc8c0; text-align: center; font-size: 13px; }
+.h-admin .side .sandi:hover, .h-admin .side .sandi.aktif { background: #2a2a2a; color: #fff; }
+
+@media (max-width: 1100px) {
+  .h-admin .grid-6 { grid-template-columns: repeat(3, 1fr); }
+  .h-admin .grid-5 { grid-template-columns: repeat(3, 1fr); }
+  .h-admin .main { padding: 28px 24px 56px; }
+}
+
+@media (max-width: 900px) {
+  /* sidebar jadi bilah atas yang bisa digeser */
+  .h-admin .app { grid-template-columns: minmax(0, 1fr); }
+  .h-admin .side { min-width: 0; }
+  .h-admin .side {
+    position: sticky; top: 0; z-index: 50; height: auto;
+    flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 16px;
+  }
+  .h-admin .side .brand { margin-bottom: 0; margin-right: auto; }
+  .h-admin .side .brand img { height: 32px; }
+  .h-admin .side .bawah { margin-top: 0; display: flex; gap: 6px; }
+  .h-admin .side .keluar a, .h-admin .side .sandi { padding: 6px 12px; }
+  .h-admin .side nav {
+    order: 3; width: 100%; display: flex; gap: 4px; overflow-x: auto;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .h-admin .side nav::-webkit-scrollbar { display: none; }
+  .h-admin .side nav a { margin-bottom: 0; white-space: nowrap; padding: 7px 14px; }
+
+  .h-admin .grid-3, .h-admin .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .h-admin .grid-2 { grid-template-columns: 1fr; }
+  .h-admin .kolom-3, .h-admin .kolom-4 { grid-template-columns: repeat(2, 1fr); }
+  .h-admin .topbar { padding: 10px 16px; }
+  .h-admin .halaman { padding: 18px 16px 56px; }
+}
+
+@media (max-width: 600px) {
+  .h-admin h1 { font-size: 22px; }
+  .h-admin .main { padding: 20px 16px 48px; }
+  .h-admin .kartu { padding: 16px; }
+  .h-admin .grid { gap: 12px; }
+  .h-admin .grid-3, .h-admin .grid-4, .h-admin .grid-5, .h-admin .grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .h-admin .grid-3 > .stat.warna:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .h-admin .stat .angka { font-size: 22px; overflow-wrap: anywhere; }
+  .h-admin .kolom-2, .h-admin .kolom-3, .h-admin .kolom-4 { grid-template-columns: 1fr; }
+  .h-admin .data-baris { grid-template-columns: 1fr; gap: 0; }
+  .h-admin .data-baris dt { margin-top: 8px; font-size: 12px; }
+  .h-admin .data-baris dd { overflow-wrap: anywhere; }
+  .h-admin .kepala-halaman { flex-direction: column; }
+  .h-admin .filter > div { min-width: 0; flex: 1 1 100%; }
+  .h-admin .filter .btn { width: 100%; }
+  .h-admin .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .h-admin .chip { white-space: nowrap; }
+  .h-admin .topbar .peran { display: none; }
+  .h-admin .aksi .btn { flex: 1 1 auto; }
+  .h-admin .modal .isi { padding: 20px; }
+  .h-admin .tabel-bungkus { margin: 0 -16px; padding: 0 16px; }
+  .h-admin .tabel-bungkus .tabel { min-width: 560px; }
+  .h-admin .tabel td { font-size: 13px; }
+}
+
+/* layar sangat kecil: kartu angka satu kolom kalau labelnya panjang */
+@media (max-width: 360px) {
+  .h-admin .grid-3, .h-admin .grid-4, .h-admin .grid-5, .h-admin .grid-6 { grid-template-columns: 1fr; }
+}
+.h-admin .grid > *, .h-admin .main > *, .h-admin .halaman > * { min-width: 0; }
+
+/* ===== FILTER: tombol Terapkan sejajar dengan kotak pilihan =====
+   select/input punya margin bawah 12px dari aturan form umum,
+   sehingga tombol di sebelahnya terlihat turun. */
+.h-admin .filter > div > input, .h-admin .filter > div > select { margin-bottom: 0; height: 44px; }
+.h-admin .filter > div > .btn, .h-admin .filter > div > button.btn { height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.h-admin .filter-info { margin: -4px 0 14px; color: #6b6259; font-size: 13px; }
+
+/* ===== API: galat per kolom dan keadaan memuat ===== */
+.h-admin .galat-kolom { color: #c0392b !important; }
+.h-admin [aria-invalid="true"] { border-color: #c0392b !important; }
+.h-admin .memuat { text-align: center; color: #6b6259; padding: 28px 12px; }
+.h-admin button:disabled, .h-admin .btn[disabled] { opacity: .65; cursor: progress; }
+
+/* atribut hidden selalu menang atas display dari class (grid/flex) */
+.h-admin [hidden] { display: none !important; }
+.h-admin .foto-lama { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.h-admin .foto-lama .thumb { width: 120px; height: 80px; object-fit: cover; }
+.h-admin .badge.tersedia { background: #dff3e4; color: #1f7a3a; }
+
+/* kartu statistik yang bisa diklik (dashboard) */
+.h-admin a.kartu.stat { display: block; color: inherit; text-decoration: none; transition: box-shadow .15s, transform .15s; }
+.h-admin a.kartu.stat:hover { box-shadow: 0 6px 18px rgba(0,0,0,.08); transform: translateY(-1px); }
+.h-admin a.kartu.stat:focus-visible { outline: 2px solid var(--oranye, #e07020); outline-offset: 2px; }
+
+/* saring status tanpa JavaScript (:target) */
+.h-admin .saring-target{position:fixed;top:0}
+.h-admin .saring{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 16px}
+.h-admin .saring .label{font-weight:600;margin-right:4px}
+.h-admin .saring a{padding:6px 14px;border:1px solid #d9d2c7;border-radius:999px;font-size:14px;color:inherit;text-decoration:none;background:#fff}
+.h-admin .saring a:hover{border-color:#e07020}
+.h-admin .saring a.semua{background:#e07020;border-color:#e07020;color:#fff}
+.h-admin #f-menunggu:target ~ .saring a.semua{background:#fff;border-color:#d9d2c7;color:inherit}
+.h-admin #f-menunggu:target ~ .saring a[href="#f-menunggu"]{background:#e07020;border-color:#e07020;color:#fff}
+.h-admin #f-menunggu:target ~ section tbody tr:not(.s-menunggu){display:none}
+.h-admin #f-dikonfirmasi:target ~ .saring a.semua{background:#fff;border-color:#d9d2c7;color:inherit}
+.h-admin #f-dikonfirmasi:target ~ .saring a[href="#f-dikonfirmasi"]{background:#e07020;border-color:#e07020;color:#fff}
+.h-admin #f-dikonfirmasi:target ~ section tbody tr:not(.s-dikonfirmasi){display:none}
+.h-admin #f-berjalan:target ~ .saring a.semua{background:#fff;border-color:#d9d2c7;color:inherit}
+.h-admin #f-berjalan:target ~ .saring a[href="#f-berjalan"]{background:#e07020;border-color:#e07020;color:#fff}
+.h-admin #f-berjalan:target ~ section tbody tr:not(.s-berjalan){display:none}
+.h-admin #f-selesai:target ~ .saring a.semua{background:#fff;border-color:#d9d2c7;color:inherit}
+.h-admin #f-selesai:target ~ .saring a[href="#f-selesai"]{background:#e07020;border-color:#e07020;color:#fff}
+.h-admin #f-selesai:target ~ section tbody tr:not(.s-selesai){display:none}
+.h-admin #f-pengajuan:target ~ .saring a.semua{background:#fff;border-color:#d9d2c7;color:inherit}
+.h-admin #f-pengajuan:target ~ .saring a[href="#f-pengajuan"]{background:#e07020;border-color:#e07020;color:#fff}
+.h-admin #f-pengajuan:target ~ section tbody tr:not(.s-pengajuan){display:none}
+.h-admin #f-dibatalkan:target ~ .saring a.semua{background:#fff;border-color:#d9d2c7;color:inherit}
+.h-admin #f-dibatalkan:target ~ .saring a[href="#f-dibatalkan"]{background:#e07020;border-color:#e07020;color:#fff}
+.h-admin #f-dibatalkan:target ~ section tbody tr:not(.s-dibatalkan){display:none}
+
+.h-admin .aksi-baris{white-space:nowrap}
+.h-admin .aksi-baris .btn.sm{margin-right:8px;padding:5px 10px;font-size:13px}
+
+/* tombol di kanan judul halaman (Figma: + Catat servis) */
+.h-admin .kepala-aksi{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+/* pop-up berisi form panjang */
+.h-admin .modal .isi.lebar{width:640px;max-height:90vh;overflow:auto}
+.h-admin .modal .isi .ket{margin-top:-4px}
+.h-admin #c8-teks{display:none;margin:4px 0 8px}
+.h-admin form:has(#c8:checked) #c8-teks{display:block}

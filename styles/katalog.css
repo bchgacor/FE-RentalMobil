@@ -1,0 +1,143 @@
+/* Dibuat otomatis dari prototipe/css/katalog.css oleh scripts/scope-css.mjs. Jangan diedit langsung. */
+/* katalog.html memakai gaya dasar dari index.css (navbar, kotak, tombol, footer, dll).
+   File ini hanya berisi tambahan khusus halaman Car. Tanpa JavaScript. */
+
+/* ===== BANNER: lebih pendek dari hero di Home ===== */
+.h-katalog .hero.banner {
+  padding: 90px 6vw calc(90px + var(--gelombang));
+}
+
+.h-katalog .kecil {
+  font-size: 12px;
+  color: #5a3a20;
+}
+
+/* ===== KOTAK PENCARIAN ===== */
+.h-katalog .pencarian {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 isian sejajar: tanggal, durasi, kursi, transmisi, tombol */
+  gap: 16px;
+  align-items: end;
+}
+.h-katalog label {
+  font-weight: 500;
+  font-size: 13px;
+  display: block;
+}
+.h-katalog input,
+.h-katalog select {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font: inherit;
+  margin: 3px 0;
+}
+.h-katalog .pencarian .btn {
+  width: 100%;
+  padding: 11px 18px;
+}
+
+/* ===== TAB (tanpa JavaScript) =====
+   Dua radio tersembunyi menentukan daftar mana yang tampil. */
+.h-katalog .radio-tab {
+  display: none;
+}
+.h-katalog .tab-baris {
+  margin: 8px 0 16px;
+}
+.h-katalog .tab-baris .tab {
+  display: inline-block;
+  width: auto;
+  padding: 7px 18px;
+  border-radius: 20px;
+  background: #fff;
+  color: #2b1a10;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 4px 6px 0 0;
+}
+.h-katalog #tab-ds:checked ~ .tab-baris .tab-ds,
+.h-katalog #tab-ts:checked ~ .tab-baris .tab-ts {
+  background: #dc6e27;
+  color: #fff;
+}
+/* daftar yang tidak dipilih disembunyikan */
+.h-katalog .grid-mobil.daftar-ts,
+.h-katalog .catatan-ts {
+  display: none;
+}
+.h-katalog #tab-ts:checked ~ .grid-mobil.daftar-ts {
+  display: grid;
+}
+.h-katalog #tab-ts:checked ~ .catatan-ts {
+  display: block;
+}
+.h-katalog #tab-ts:checked ~ .grid-mobil.daftar-ds,
+.h-katalog #tab-ts:checked ~ .catatan-ds {
+  display: none;
+}
+
+/* ===== DAFTAR MOBIL ===== */
+.h-katalog .grid-mobil {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* JUMLAH kartu per baris: ganti 4 jadi 3 supaya kartu lebih besar */
+  gap: 16px; /* jarak antar kartu */
+}
+.h-katalog .mobil {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+} /* padding 0 supaya gambar penuh sampai tepi */
+.h-katalog .mobil img {
+  width: 100%;
+  height: 150px; /* TINGGI gambar mobil: ubah angka ini */
+  object-fit: contain; /* mobil utuh, tidak terpotong */
+  padding: 8px;
+  display: block;
+  background: linear-gradient(135deg, #fbe6d3, #f0b98a);
+}
+.h-katalog .mobil .nama {
+  background: #5a2f14;
+  color: #fff;
+  padding: 8px 14px;
+  font-weight: 600;
+} /* label cokelat nama mobil */
+.h-katalog .mobil .isi {
+  padding: 12px 14px 14px;
+  flex: 1;
+} /* isi spesifikasi dan tarif */
+.h-katalog .mobil .btn {
+  padding: 8px 20px;
+}
+.h-katalog .catatan-ds,
+.h-katalog .catatan-ts {
+  margin-top: 16px;
+}
+
+@media (max-width: 1000px) {
+  .h-katalog .grid-mobil {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .h-katalog .hero.banner {
+    padding: 60px 9vw calc(60px + var(--gelombang));
+  }
+  .h-katalog .grid-mobil {
+    grid-template-columns: repeat(2, 1fr); /* tetap 2 kolom di HP */
+    gap: 10px;
+  }
+  .h-katalog .pencarian {
+    grid-template-columns: 1fr;
+  }
+  .h-katalog .mobil img {
+    height: 110px;
+  }
+  .h-katalog .mobil .isi {
+    font-size: 13px;
+    padding: 10px 12px 12px;
+  }
+}

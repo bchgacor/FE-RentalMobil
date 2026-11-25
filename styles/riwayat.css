@@ -1,0 +1,280 @@
+/* Dibuat otomatis dari prototipe/css/riwayat.css oleh scripts/scope-css.mjs. Jangan diedit langsung. */
+/* ===== DASAR ===== */
+.h-riwayat, .h-riwayat * {
+  box-sizing: border-box;
+}
+.h-riwayat {
+  margin: 0;
+  font:
+    400 14px/1.6 "Poppins",
+    sans-serif;
+  background:
+    url("/img/pattern-atas.jpg") center top / max(100vw, 1000px) auto
+      no-repeat,
+    url("/img/pattern-tile.jpg") center calc(max(100vw, 1000px) * 0.5581) /
+      max(100vw, 1000px) auto repeat-y,
+    #ffad6d; /* pattern memenuhi halaman sampai bawah */
+  color: #2b1a10;
+}
+.h-riwayat a {
+  color: inherit;
+}
+.h-riwayat h1,
+.h-riwayat h2,
+.h-riwayat h3 {
+  margin: 0 0 0.5em;
+}
+
+/* ===== NAVBAR ===== */
+.h-riwayat .nav {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 12px 6vw;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+.h-riwayat .nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #dc6e27;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  margin-right: auto; /* dorong menu ke tengah */
+  text-decoration: none;
+}
+.h-riwayat .nav .logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+.h-riwayat .nav a {
+  text-decoration: none;
+  font-weight: 500;
+}
+.h-riwayat .nav a.aktif {
+  color: #dc6e27;
+}
+
+.h-riwayat .menu {
+  display: contents;
+} /* di desktop, isi menu ikut tersusun di navbar */
+.h-riwayat .nav .btn,
+.h-riwayat .nav .kanan {
+  margin-left: auto;
+} /* dorong ke kanan, sehingga menu di tengah */
+.h-riwayat .burger {
+  display: none; /* tombol hamburger disembunyikan di desktop */
+  background: none;
+  border: 0;
+  font-size: 28px;
+  line-height: 1;
+  color: #3a1e0f;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* ===== TOMBOL ===== */
+.h-riwayat .btn {
+  display: inline-block;
+  background: #dc6e27;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font:
+    600 14px "Poppins",
+    sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+/* ===== LAYOUT ===== */
+.h-riwayat .wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 20px;
+} /* max-width = lebar daftar pesanan */
+.h-riwayat .jarak {
+  margin-top: 30px;
+}
+.h-riwayat .kecil {
+  font-size: 12px;
+  color: #666;
+}
+
+/* ===== TAB ===== */
+.h-riwayat .tab {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 4px 6px 10px 0;
+}
+.h-riwayat .tab.aktif {
+  background: #dc6e27;
+  color: #fff;
+}
+
+/* ===== KARTU PESANAN: gambar di kiri, detail di kanan ===== */
+.h-riwayat .kartu {
+  display: flex;
+  gap: 16px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px; /* ruang dalam kartu: naikkan untuk kartu lebih besar */
+  margin-bottom: 14px; /* jarak antar kartu */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.h-riwayat .kartu img {
+  width: 160px; /* LEBAR gambar mobil */
+  height: 110px; /* TINGGI gambar mobil */
+  object-fit: cover;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    #f6d8bf,
+    #e8a672
+  ); /* warna cadangan kalau gambar belum ada */
+  flex-shrink: 0;
+}
+.h-riwayat .kartu .detail {
+  flex: 1;
+}
+
+.h-riwayat .tagihan {
+  color: #c0392b;
+  font-size: 13px;
+  margin: 6px 0;
+} /* kotak peringatan tagihan tambahan */
+
+/* ===== LABEL STATUS (warna mengikuti status) ===== */
+.h-riwayat .badge {
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.h-riwayat .menunggu {
+  background: #fff3c4;
+  color: #8a6d00;
+} /* kuning */
+.h-riwayat .dikonfirmasi {
+  background: #d4f4dd;
+  color: #1e7a3a;
+} /* hijau */
+.h-riwayat .berjalan {
+  background: #d6e8ff;
+  color: #1d5fb4;
+} /* biru */
+.h-riwayat .selesai {
+  background: #e5e5e5;
+  color: #555;
+} /* abu */
+.h-riwayat .dibatalkan {
+  background: #fbd5d5;
+  color: #a11;
+} /* merah */
+
+/* ===== TAHAPAN 4 TITIK ===== */
+.h-riwayat .tahap {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  margin: 10px 0;
+  align-items: center;
+}
+.h-riwayat .tahap i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-right: 4px;
+}
+.h-riwayat .tahap i.on {
+  background: #dc6e27;
+} /* titik oranye = tahap yang sudah dilewati */
+
+/* ===== FOOTER ===== */
+.h-riwayat .footer {
+  background: #3a1e0f;
+  color: #e8d8cc;
+  padding: 28px 6vw;
+  margin-top: 30px;
+}
+.h-riwayat .footer a {
+  margin-right: 14px;
+}
+
+@media (max-width: 800px) {
+  .h-riwayat .kartu {
+    flex-direction: column;
+  }
+  .h-riwayat .kartu img {
+    width: 100%;
+    height: 160px;
+  }
+  .h-riwayat .nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+/* ===== NAVBAR DI HP ===== */
+@media (max-width: 800px) {
+  .h-riwayat .nav {
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 10px 4vw;
+  }
+  .h-riwayat .nav .logo {
+    flex: 1;
+    font-size: 14px;
+    margin-right: 0;
+  }
+  .h-riwayat .nav .logo img {
+    height: 38px;
+  }
+  .h-riwayat .burger {
+    display: block;
+  }
+
+  .h-riwayat .menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 8px;
+  }
+  .h-riwayat .menu.buka {
+    display: flex;
+  } /* muncul saat ☰ ditekan */
+  .h-riwayat .menu a {
+    padding: 12px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+  }
+  .h-riwayat .nav .menu .btn {
+    margin: 10px 0 4px;
+    border-top: 0;
+    text-align: center;
+  }
+  .h-riwayat .nav .menu .kanan {
+    margin-left: 0;
+  }
+}
+
+/* penilaian langsung di kartu riwayat (sesuai Figma) */
+.h-riwayat .nilai-inline textarea{width:100%;min-height:70px;margin:8px 0;padding:10px 12px;border:1px solid #d9d2c7;border-radius:10px;font:inherit;resize:vertical}
+.h-riwayat .nilai-inline .bintang-pilih label{font-size:28px}
+.h-riwayat .nilai-sudah .bintang{color:#f2a900;font-size:24px;letter-spacing:3px}
+.h-riwayat .nilai-sudah .ulasan-teks{background:#f4efe9;border-radius:10px;padding:10px 12px;margin:6px 0 0}
+.h-riwayat .tagihan.lunas{background:#e6f4ea;color:#1e6b34;border-color:#b7dfc2}

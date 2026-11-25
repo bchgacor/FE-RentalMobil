@@ -1,0 +1,906 @@
+/* Dibuat otomatis dari prototipe/css/index.css oleh scripts/scope-css.mjs. Jangan diedit langsung. */
+/* ===== DASAR ===== */
+.h-umum, .h-umum * {
+  box-sizing: border-box;
+}
+.h-umum {
+  margin: 0;
+  font:
+    400 14px/1.6 "Poppins",
+    sans-serif;
+  background:
+    url("/img/pattern-atas.jpg") center top / max(100vw, 1000px) auto
+      no-repeat,
+    url("/img/pattern-tile.jpg") center calc(max(100vw, 1000px) * 0.5581) /
+      max(100vw, 1000px) auto repeat-y,
+    #ffad6d; /* pattern memenuhi halaman sampai bawah */
+  color: #2b1a10; /* warna teks */
+}
+.h-umum a {
+  color: inherit;
+}
+.h-umum h1,
+.h-umum h2,
+.h-umum h3 {
+  margin: 0 0 0.5em;
+}
+
+/* ===== NAVBAR ===== */
+.h-umum .nav {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 12px 6vw;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+.h-umum .nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #dc6e27;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  margin-right: auto; /* dorong menu ke tengah */
+  text-decoration: none;
+}
+.h-umum .nav .logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+.h-umum .nav a {
+  text-decoration: none;
+  font-weight: 500;
+}
+.h-umum .nav a.aktif {
+  color: #dc6e27;
+}
+
+.h-umum .menu {
+  display: flex;
+  flex: 1; /* menu mengisi ruang kosong di antara logo dan tepi kanan */
+  align-items: center;
+  justify-content: center; /* link berada di tengah area menu */
+  gap: 30px; /* jarak antar link */
+  /* ATUR MANUAL posisi: geser ke kanan = angka positif, ke kiri = negatif */
+  padding-right: 300px; /* makin besar = link makin ke kiri */
+  position: relative;
+}
+/* tombol Masuk: nempel di pojok kanan navbar */
+.h-umum .nav .menu > .btn {
+  position: absolute;
+  right: 0;
+  padding: 8px 20px; /* BESAR kotak oren: angka 1 = tinggi, angka 2 = lebar */
+  font-size: 14px; /* ukuran teks tombol */
+}
+.h-umum .burger-cek {
+  display: none; /* kotak centang tersembunyi: dipakai label ☰ untuk membuka menu tanpa JavaScript */
+}
+.h-umum .burger {
+  display: none; /* tombol hamburger disembunyikan di desktop */
+  background: none;
+  border: 0;
+  font-size: 28px;
+  line-height: 1;
+  color: #3a1e0f;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* ===== TOMBOL ===== */
+.h-umum .btn {
+  display: inline-block;
+  background: #dc6e27; /* warna tombol utama (oranye) */
+  color: #fff;
+  border: 0;
+  border-radius: 8px; /* kebulatan sudut */
+  padding: 15px 30px; /* BESAR tombol: angka pertama = tinggi, kedua = lebar */
+  font:
+    600 14px "Poppins",
+    sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+.h-umum .btn.garis {
+  background: #fff;
+  color: #000;
+  border: 1.5px solid #000;
+}
+
+/* ===== HERO (gambar besar paling atas) ===== */
+.h-umum .hero {
+  /* GANTI GAMBAR HERO: ubah nama file pada url(...) di bawah.
+     Lapisan gelap (rgba 0,0,0,.65) membuat tulisan putih tetap terbaca;
+     kecilkan angka .65 kalau gambar mau lebih terang. */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+    url("/img/hero.png");
+  background-color: #5a3a20; /* warna cadangan kalau gambar belum ada */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 200px 6vw; /* TINGGI hero: ubah angka pertama (90px) */
+
+  /* TEPI BAWAH BERGELOMBANG: --gelombang = tinggi gelombang */
+  --gelombang: 60px;
+  padding-bottom: calc(200px + var(--gelombang));
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1200V30Q1050 70 900 30T600 30T300 30T0 30Z'/%3E%3C/svg%3E")
+      bottom / 50% var(--gelombang) repeat-x,
+    linear-gradient(#000, #000) top / 100% calc(100% - var(--gelombang) + 1px)
+      no-repeat;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1200V30Q1050 70 900 30T600 30T300 30T0 30Z'/%3E%3C/svg%3E")
+      bottom / 50% var(--gelombang) repeat-x,
+    linear-gradient(#000, #000) top / 100% calc(100% - var(--gelombang) + 1px)
+      no-repeat;
+}
+.h-umum .hero h1 {
+  font-size: 50px; /* ukuran huruf judul */
+  line-height: 1.1; /* jarak antar baris, makin kecil makin mepet */
+  margin: 0; /* hapus jarak bawaan di atas dan bawah h1 */
+}
+
+.h-umum .hero p {
+  font-size: 18px; /* UKURAN paragraf, ubah angka ini (sebelumnya 14px) */
+  line-height: 1.6; /* jarak antar baris paragraf */
+  max-width: 700px; /* lebar paragraf supaya tidak terlalu melebar */
+  margin: 16px auto 24px; /* atas 16px (jarak dari judul), samping auto (rata tengah), bawah 24px (jarak ke tombol) */
+}
+.h-umum .hero span {
+  color: #dc6e27;
+}
+
+/* ===== LAYOUT ===== */
+.h-umum .wrap {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 28px 18px;
+} /* max-width = lebar isi halaman */
+.h-umum .jarak {
+  margin-top: 30px;
+}
+
+/* JUDUL BAGIAN (Kenapa Harus Memilih Kami?, Cara Memesan, Our Partner, dll):
+   di tengah dan besar. Ubah font-size untuk memperbesar/memperkecil. */
+.h-umum .wrap > h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .h-umum .wrap > h2 {
+    font-size: 24px;
+  }
+}
+.h-umum .oranye {
+  color: #dc6e27;
+  font-size: 20px;
+}
+
+/* Grid: tinggal ubah jumlah kolom di sini */
+.h-umum .grid {
+  display: grid;
+  gap: 16px;
+} /* gap = jarak antar kotak */
+.h-umum .grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.h-umum .grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.h-umum .grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ===== KOTAK PUTIH ===== */
+.h-umum .kotak {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px; /* ruang dalam kotak: besarkan kotak dengan menaikkan angka ini */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  /* min-height: 120px;            hapus tanda komentar ini kalau mau tinggi kotak seragam */
+}
+
+/* ===== CARA MEMESAN: nomor dalam lingkaran ===== */
+.h-umum .langkah {
+  text-align: center;
+} /* ganti jadi text-align: left kalau mau rata kiri */
+.h-umum .langkah p {
+  margin: 10px 0 0;
+}
+
+.h-umum .nomor {
+  display: inline-grid;
+  place-items: center; /* angka tepat di tengah lingkaran */
+  width: 40px; /* UKURAN lingkaran: lebar dan tinggi dibuat sama */
+  height: 40px;
+  border-radius: 50%; /* 50% = bulat penuh */
+  background: #dc6e27; /* warna lingkaran */
+  color: #fff; /* warna angka */
+  font-weight: 700;
+  font-size: 18px; /* ukuran angka */
+}
+
+/* ===== KOTAK KEUNGGULAN: ikon di kiri, teks di kanan ===== */
+.h-umum .keunggulan {
+  display: flex;
+  align-items: center; /* ikon dan teks sejajar di tengah secara vertikal */
+  gap: 14px; /* jarak antara ikon dan teks */
+}
+.h-umum .keunggulan img {
+  width: 48px; /* UKURAN ikon: lebar dan tinggi dibuat sama */
+  height: 48px;
+  object-fit: contain; /* ikon utuh, tidak terpotong atau gepeng */
+  flex-shrink: 0; /* ikon tidak mengecil saat teks panjang */
+}
+
+/* Kotak yang ada gambarnya di atas */
+.h-umum .kotak-gambar {
+  padding: 0;
+  overflow: hidden;
+}
+/* Pengaturan umum untuk kedua gambar (tetap) */
+.h-umum .kotak-gambar img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  background: #e8a672;
+}
+
+/* GAMBAR 1: Dengan Sopir */
+.h-umum .kotak-gambar img.gambar-1 {
+  height: 240px; /* tinggi khusus gambar 1 */
+  object-position: center 100%; /* bagian foto yang ditampilkan: kiri-kanan, atas-bawah */
+}
+
+/* GAMBAR 2: Lepas Kunci */
+.h-umum .kotak-gambar img.gambar-2 {
+  height: 240px; /* tinggi khusus gambar 2 */
+  object-position: center 50%; /* misalnya fokus ke bagian bawah foto */
+}
+.h-umum .kotak-gambar .isi {
+  padding: 20px;
+}
+
+/* ===== DAFTAR DI KOTAK DUA CARA MENYEWA ===== */
+.h-umum .sub {
+  font-weight: 600;
+  margin: 10px 0 4px;
+} /* judul kecil "Termasuk:" dan sejenisnya */
+.h-umum .catatan {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.h-umum .daftar {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.h-umum .daftar li {
+  position: relative;
+  padding-left: 22px; /* jarak teks dari bullet */
+  margin-bottom: 4px; /* jarak antar poin */
+}
+
+/* Bullet: titik oranye */
+.h-umum .daftar li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 9px; /* naik-turunkan titik supaya sejajar dengan teks */
+  width: 8px; /* UKURAN titik */
+  height: 8px;
+  border-radius: 50%;
+  background: #dc6e27; /* warna titik */
+}
+
+/* ===== PENUTUP: "Siap berangkat?" ===== */
+.h-umum .penutup {
+  background: #203735; /* warna kotak */
+  color: #fff; /* warna tulisan, putih supaya terbaca di latar gelap */
+  text-align: center;
+  margin-top: 30px;
+  padding: 40px 20px; /* ruang dalam kotak: naikkan untuk kotak lebih besar */
+}
+.h-umum .penutup h2 {
+  margin-bottom: 20px;
+} /* jarak judul ke tombol */
+
+.h-umum .tombol-penutup {
+  display: flex;
+  justify-content: center; /* tombol tetap di tengah */
+  gap: 20px; /* JARAK antar tombol: naikkan angka ini kalau mau lebih lebar */
+  flex-wrap: wrap; /* di layar sempit tombol turun ke bawah, tidak keluar kotak */
+}
+.h-umum .tombol-penutup .btn {
+  margin: 0;
+} /* margin lama dimatikan, jarak sekarang diatur oleh gap */
+
+/* ===== FOOTER ===== */
+.h-umum .footer {
+  background: #3a1e0f;
+  color: #e8d8cc;
+  padding: 60px 4vw 30px;
+  margin-top: 30px;
+
+  width: 100vw; /* selebar layar penuh */
+  margin-left: calc(50% - 50vw); /* tarik keluar dari batas .wrap ke kiri */
+  margin-right: calc(50% - 50vw); /* tarik keluar ke kanan */
+  margin-bottom: calc(50% - 50vw); /* hapus jarak bawah default .wrap */
+}
+
+/* Susunan kolom: kiri lebih lebar (2fr), tiga kolom tautan (1fr) */
+.h-umum .footer-isi {
+  /* max-width dan margin auto dihapus supaya isi footer memanjang penuh kiri-kanan */
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* Kolom kiri */
+.h-umum .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+}
+.h-umum .footer-logo img {
+  height: 55px;
+  width: auto;
+  display: block;
+} /* UKURAN logo */
+.h-umum .footer-brand p {
+  margin: 16px 0 20px;
+  max-width: 380px; /* lebar paragraf deskripsi */
+  line-height: 1.8;
+}
+
+/* Ikon sosial */
+.h-umum .footer-sosial {
+  display: flex;
+  align-items: center; /* semua ikon sejajar tengah, walau ukurannya beda */
+  gap: 18px; /* jarak antar ikon */
+}
+.h-umum .footer-sosial img {
+  width: 50px; /* UKURAN ikon: ubah lebar dan tinggi dengan angka yang sama */
+  height: 50px;
+  object-fit: contain; /* ikon utuh, tidak gepeng */
+  display: block;
+}
+
+/* Kolom tautan */
+.h-umum .footer-kolom h4 {
+  color: #fff;
+  font-size: 15px;
+  margin: 0 0 16px;
+}
+.h-umum .footer-kolom a {
+  display: block;
+  color: #e8d8cc;
+  text-decoration: none;
+  margin-bottom: 14px;
+}
+.h-umum .footer-kolom a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Garis dan copyright */
+.h-umum .footer-bawah {
+  /* max-width dan margin auto dihapus, garis ikut memanjang penuh */
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 13px;
+  color: #c9b5a6;
+}
+
+/* ===== FOOTER DI HP: taruh di dalam @media (max-width: 800px) ===== */
+.h-umum {
+  overflow-x: hidden;
+} /* mencegah geser kiri-kanan akibat footer 100vw */
+
+@media (max-width: 800px) {
+  .h-umum .footer {
+    padding: 40px 5vw 24px;
+  }
+  .h-umum .footer-isi {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+  }
+  .h-umum .footer-brand {
+    grid-column: 1 / -1;
+  } /* logo dan deskripsi satu baris penuh */
+  .h-umum .footer-bawah {
+    text-align: center;
+  }
+}
+
+/* ===== NAVBAR DI HP ===== */
+@media (max-width: 800px) {
+  .h-umum .nav {
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 10px 4vw;
+  }
+  .h-umum .nav .logo {
+    flex: 1;
+    font-size: 14px;
+    margin-right: 0;
+  }
+  .h-umum .nav .logo img {
+    height: 50px;
+  }
+  .h-umum .burger {
+    display: block;
+  }
+
+  .h-umum .menu {
+    display: none;
+    flex: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0 0;
+    padding-right: 0;
+  }
+  .h-umum .burger-cek:checked ~ .menu {
+    display: flex;
+  } /* muncul saat ☰ ditekan (tanpa JavaScript) */
+  .h-umum .menu a {
+    padding: 12px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+  }
+  .h-umum .nav .menu .btn {
+    position: static;
+    margin: 10px 0 4px;
+    border-top: 0;
+    text-align: center;
+  }
+  .h-umum .nav .menu .kanan {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .h-umum .wrap {
+    padding: 20px 14px;
+  }
+  .h-umum .hero {
+    padding: 70px 5vw;
+  }
+  .h-umum .hero h1 {
+    font-size: 28px;
+  }
+  .h-umum .hero p {
+    font-size: 15px;
+    margin: 14px auto 20px;
+  }
+
+  .h-umum .tombol-penutup {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .h-umum .tombol-penutup .btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .h-umum .grid-2,
+  .h-umum .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .h-umum .grid-4 {
+    grid-template-columns: 1fr 1fr;
+  } /* Cara Memesan: 2 kolom */
+  .h-umum .keunggulan img {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* kedua selector ditulis lengkap supaya mengalahkan aturan .gambar-1 dan .gambar-2 */
+  .h-umum .kotak-gambar img.gambar-1,
+  .h-umum .kotak-gambar img.gambar-2 {
+    height: 180px;
+  }
+
+  .h-umum .penutup {
+    padding: 30px 16px;
+  }
+  .h-umum .penutup h2 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .h-umum .hero h1 {
+    font-size: 24px;
+  }
+  .h-umum .grid-4 {
+    grid-template-columns: 1fr;
+  } /* HP kecil: 1 kolom */
+}
+
+/* ===== MARGIN KIRI-KANAN DI HP (desktop tidak terpengaruh) ===== */
+@media (max-width: 800px) {
+  .h-umum .nav {
+    padding: 10px 7vw;
+  }
+  .h-umum .wrap {
+    padding: 20px 7vw; /* makin besar angka vw, isi makin menyempit */
+  }
+  .h-umum .hero {
+    padding: 70px 9vw;
+  }
+  .h-umum .footer {
+    padding: 40px 7vw 24px;
+  }
+}
+
+/* ===== LOGO & IKON SOSIAL DI HP (desktop tidak terpengaruh) ===== */
+@media (max-width: 800px) {
+  .h-umum .nav .logo {
+    font-size: 11px; /* ukuran tulisan GANTENGNYAJATIMGROUP di navbar */
+    gap: 6px;
+  }
+  .h-umum .nav .logo img {
+    height: 30px; /* ukuran logo di navbar */
+  }
+  .h-umum .footer-logo {
+    font-size: 16px; /* tulisan di footer */
+    gap: 6px;
+  }
+  .h-umum .footer-logo img {
+    height: 34px; /* logo di footer */
+  }
+  .h-umum .footer-sosial {
+    gap: 12px;
+  }
+  .h-umum .footer-sosial img {
+    width: 32px; /* ikon WA & Instagram */
+    height: 32px;
+  }
+}
+
+/* ===== TOMBOL PESAN SEKARANG & CARA PESAN: KIRI-KANAN DI HP ===== */
+@media (max-width: 800px) {
+  .h-umum .tombol-penutup {
+    flex-direction: row; /* sejajar kiri-kanan */
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .h-umum .tombol-penutup .btn {
+    width: auto;
+    max-width: none;
+    flex: 0 1 auto;
+    padding: 12px 18px;
+  }
+}
+
+
+/* =========================================================
+   KOMPONEN TAMBAHAN (halaman prototipe prototipe/guest dan prototipe/user)
+   Dipakai oleh halaman akun, form, riwayat, detail pesanan, pembayaran,
+   nota, profil, dan halaman statis. Warna mengikuti palet di atas.
+   ========================================================= */
+
+/* ----- banner judul (sama dengan about.css, katalog.css, pesan.css) ----- */
+.h-umum .hero.banner { padding: 90px 6vw calc(90px + var(--gelombang)); }
+@media (max-width: 800px) { .h-umum .hero.banner { padding: 60px 9vw calc(60px + var(--gelombang)); } }
+
+/* ----- bantu ----- */
+.h-umum .abu { color: #6b6259; }
+.h-umum .tengah { text-align: center; }
+.h-umum .tebal { font-weight: 600; }
+.h-umum .kecil { font-size: 12px; }
+.h-umum .jarak-kecil { margin-top: 20px; }
+.h-umum .baris { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.h-umum .baris.sebar { justify-content: space-between; }
+.h-umum .wrap.wrap-sempit { max-width: 760px; }
+.h-umum .wrap.wrap-form { max-width: 480px; }
+.h-umum .wrap > .kotak + .kotak { margin-top: 20px; }
+.h-umum .tautan { color: #dc6e27; font-weight: 500; }
+.h-umum :focus-visible { outline: 3px solid #3a1e0f; outline-offset: 2px; }
+.h-umum .tag-contoh {
+  display: inline-block; font-size: 11px; font-weight: 500; padding: 0 8px; border-radius: 999px;
+  background: #ece8e4; color: #6b6259; vertical-align: middle;
+}
+
+/* ----- navbar: sisi kanan (Masuk/Daftar atau nama user/Keluar) ----- */
+.h-umum .nav .menu .kanan { position: absolute; right: 0; display: flex; align-items: center; gap: 10px; }
+.h-umum .nav .menu .kanan .btn { padding: 8px 20px; font-size: 14px; }
+.h-umum .nav .nama-user { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px; background: #ffe3cf; }
+.h-umum .nav .nama-user .avatar { width: 28px; height: 28px; border-radius: 50%; background: #dc6e27; color: #fff; font-size: 12px; font-weight: 600; display: inline-grid; place-items: center; }
+
+/* ----- tombol ----- */
+.h-umum .btn.sm { padding: 8px 18px; font-size: 13px; }
+.h-umum .btn.blok { display: block; width: 100%; text-align: center; }
+.h-umum .btn.bahaya { background: #fff; color: #c0392b; border: 1.5px solid #c0392b; }
+.h-umum .btn.bahaya:hover { background: #c0392b; color: #fff; }
+.h-umum .btn-google {
+  display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 11px;
+  border: 1px solid #c9bfb6; border-radius: 8px; background: #fff; color: #2b1a10;
+  font: 500 14px "Poppins", sans-serif; text-decoration: none; cursor: pointer;
+}
+.h-umum .btn-google .g { width: 28px; height: 28px; object-fit: contain; display: block; margin: -3px 0; }
+
+/* ----- form dasar (halaman yang tidak memuat katalog.css atau pesan.css) ----- */
+.h-umum label { font-weight: 500; font-size: 13px; display: block; }
+.h-umum input, .h-umum select, .h-umum textarea {
+  width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 8px; font: inherit; margin: 3px 0 12px;
+}
+.h-umum textarea { resize: vertical; }
+.h-umum input[type="checkbox"], .h-umum input[type="radio"] { width: auto; margin: 0 8px 0 0; }
+.h-umum input:user-invalid, .h-umum select:user-invalid { border-color: #c0392b; }
+.h-umum .hint { font-size: 12px; color: #6b6259; margin: -6px 0 12px; }
+.h-umum .field.baris-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.h-umum .cek { display: flex; align-items: center; margin-bottom: 8px; }
+.h-umum .cek label { font-weight: 400; font-size: 14px; }
+.h-umum .pilihan { display: flex; align-items: center; margin-bottom: 8px; }
+.h-umum .pilihan label { font-weight: 400; font-size: 14px; }
+.h-umum .pemisah { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: #6b6259; font-size: 12px; }
+.h-umum .pemisah::before, .h-umum .pemisah::after { content: ""; flex: 1; height: 1px; background: #e6d3c3; }
+.h-umum .kartu-akun { padding: 28px; }
+.h-umum .kartu-akun h1 { font-size: 26px; text-align: center; }
+.h-umum .tab-akun { display: flex; margin-bottom: 20px; border-bottom: 2px solid #e6d3c3; }
+.h-umum .tab-akun a { flex: 1; text-align: center; padding: 10px; text-decoration: none; font-weight: 600; color: #6b6259; margin-bottom: -2px; border-bottom: 2px solid transparent; }
+.h-umum .tab-akun a.aktif { color: #dc6e27; border-bottom-color: #dc6e27; }
+
+/* ----- alert, keadaan kosong, kotak contoh ----- */
+.h-umum .alert { padding: 12px 16px; border-radius: 10px; margin-bottom: 14px; font-size: 13px; border: 1px solid transparent; }
+.h-umum .alert.galat { background: #fdecea; color: #c0392b; border-color: #f2b8b1; }
+.h-umum .alert.sukses { background: #e3f6ea; color: #1e7a3a; border-color: #b5e2c7; }
+.h-umum .alert.info { background: #e4effb; color: #1d5fb4; border-color: #bcd6f1; }
+.h-umum .alert.peringatan { background: #fff3c4; color: #8a6d00; border-color: #ecd68a; }
+.h-umum .alert strong { display: block; }
+.h-umum .toast { display: inline-flex; padding: 10px 18px; border-radius: 10px; background: #3a1e0f; color: #fff; font-size: 13px; }
+.h-umum .kosong { text-align: center; padding: 48px 24px; }
+.h-umum .kosong .ikon { font-size: 44px; line-height: 1; margin-bottom: 10px; }
+.h-umum .kosong h2 { font-size: 22px; }
+.h-umum .demo { margin-top: 28px; padding: 16px; border: 2px dashed #a98a73; border-radius: 12px; background: rgba(255, 255, 255, 0.55); }
+.h-umum .demo > .judul { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6b6259; margin-bottom: 10px; }
+.h-umum .demo .alert:last-child { margin-bottom: 0; }
+
+/* ----- ulasan, daftar tanda, spesifikasi ----- */
+.h-umum .ulasan .bintang { color: #f2a900; letter-spacing: 3px; font-size: 30px; line-height: 1.2; }
+.h-umum .ulasan .penulis { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.h-umum .ulasan .penulis .avatar { width: 36px; height: 36px; border-radius: 50%; background: #ffcba4; font-weight: 600; display: grid; place-items: center; }
+.h-umum .daftar.huruf { counter-reset: huruf; }
+.h-umum .daftar.huruf li { counter-increment: huruf; }
+.h-umum .daftar.huruf li::before {
+  content: counter(huruf, lower-alpha) "."; background: none; width: auto; height: auto;
+  top: 0; left: 0; border-radius: 0; color: #dc6e27; font-weight: 600;
+}
+.h-umum .daftar-tanda { list-style: none; padding: 0; margin: 0 0 12px; }
+.h-umum .daftar-tanda li { padding-left: 24px; position: relative; margin-bottom: 4px; }
+.h-umum .daftar-tanda li::before { content: "✓"; position: absolute; left: 0; color: #dc6e27; font-weight: 700; }
+.h-umum .daftar-tanda.tidak li::before { content: "✕"; color: #c0392b; }
+.h-umum .spek-tabel { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+.h-umum .spek-tabel td { padding: 6px 0; border-bottom: 1px solid #e6d3c3; }
+.h-umum .spek-tabel td:first-child { color: #6b6259; width: 40%; }
+
+/* ----- tab tanpa JavaScript (riwayat) ----- */
+.h-umum .tab-radio { position: absolute; opacity: 0; pointer-events: none; width: auto; }
+.h-umum .tab-bar { margin: 8px 0 16px; }
+.h-umum .tab-bar label.tab { cursor: pointer; font-size: 14px; }
+.h-umum #tab-1:checked ~ .tab-bar label[for="tab-1"], .h-umum #tab-2:checked ~ .tab-bar label[for="tab-2"] { background: #dc6e27; color: #fff; }
+.h-umum #tab-1:focus-visible ~ .tab-bar label[for="tab-1"], .h-umum #tab-2:focus-visible ~ .tab-bar label[for="tab-2"] { outline: 3px solid #3a1e0f; }
+.h-umum .panel { display: none; }
+.h-umum #tab-1:checked ~ .p-1, .h-umum #tab-2:checked ~ .p-2 { display: block; }
+.h-umum .badge.pengajuan { background: #fff3c4; color: #8a6d00; }
+.h-umum .kartu .btn { margin-right: 12px; padding: 8px 20px; }
+.h-umum .kartu img { object-fit: contain; }
+
+/* ----- form pesan: pilihan jenis sewa tanpa JavaScript ----- */
+.h-umum .jenis-radio { position: absolute; opacity: 0; pointer-events: none; width: auto; }
+.h-umum .pilihan-kartu { display: flex; gap: 12px; margin-bottom: 16px; }
+.h-umum .pilihan-kartu label { flex: 1; text-align: center; padding: 10px; border: 2px solid #e6d3c3; border-radius: 10px; cursor: pointer; font-size: 14px; background: #fff; }
+.h-umum .blok-sopir, .h-umum .blok-lepas { display: none; }
+.h-umum #j-sopir:checked ~ .blok-sopir, .h-umum #j-lepas:checked ~ .blok-lepas { display: block; }
+.h-umum #j-sopir:checked ~ .pilihan-kartu label[for="j-sopir"], .h-umum #j-lepas:checked ~ .pilihan-kartu label[for="j-lepas"] { border-color: #dc6e27; background: #ffe3cf; color: #b9571a; }
+.h-umum #j-sopir:focus-visible ~ .pilihan-kartu label[for="j-sopir"], .h-umum #j-lepas:focus-visible ~ .pilihan-kartu label[for="j-lepas"] { outline: 3px solid #3a1e0f; }
+.h-umum .ringkasan .baris { justify-content: space-between; margin-bottom: 4px; }
+.h-umum .ringkasan .total { border-top: 1px dashed #b08e76; padding-top: 8px; margin-top: 8px; font-weight: 700; font-size: 16px; }
+.h-umum .syarat { font-size: 13px; }
+.h-umum .syarat ol { margin: 0 0 8px; }
+.h-umum .dua-kolom h2 { font-size: 24px; }
+
+/* ----- tabel, data, detail pesanan ----- */
+.h-umum .tabel { width: 100%; border-collapse: collapse; }
+.h-umum .tabel th, .h-umum .tabel td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e6d3c3; }
+.h-umum .tabel th { background: #ffe3cf; font-weight: 600; font-size: 13px; }
+.h-umum .tabel .angka { text-align: right; white-space: nowrap; }
+.h-umum .tabel tr.total td { font-weight: 700; border-bottom: 0; }
+.h-umum .data-baris { display: grid; grid-template-columns: 200px 1fr; gap: 6px 16px; margin: 0; }
+.h-umum .data-baris dt { color: #6b6259; }
+.h-umum .data-baris dd { margin: 0; font-weight: 500; }
+.h-umum .plat { display: inline-block; padding: 2px 12px; border: 2px solid #2b1a10; border-radius: 6px; font-weight: 700; letter-spacing: 0.1em; background: #fff; }
+.h-umum .kepala-detail { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+.h-umum .kepala-detail h1 { margin: 0 0 4px; font-size: 26px; }
+.h-umum .aksi-detail { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.h-umum .timeline { list-style: none; padding: 0; margin: 0; }
+.h-umum .timeline li { padding: 0 0 14px 20px; border-left: 2px solid #e6d3c3; position: relative; margin-left: 6px; }
+.h-umum .timeline li::before { content: ""; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #dc6e27; }
+.h-umum .timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.h-umum .timeline time { display: block; font-size: 12px; color: #6b6259; }
+.h-umum .countdown { display: inline-block; font-weight: 700; font-size: 20px; font-variant-numeric: tabular-nums; color: #8a6d00; }
+.h-umum .bintang-pilih { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
+.h-umum .bintang-pilih input { position: absolute; opacity: 0; width: auto; }
+.h-umum .bintang-pilih label { font-size: 30px; line-height: 1; color: #d6cabf; cursor: pointer; margin: 0; }
+.h-umum .bintang-pilih input:checked ~ label, .h-umum .bintang-pilih label:hover, .h-umum .bintang-pilih label:hover ~ label { color: #f2a900; }
+.h-umum .bintang-pilih input:focus-visible + label { outline: 3px solid #3a1e0f; }
+.h-umum .nota { max-width: 760px; margin: 0 auto; }
+.h-umum .nota .kop { display: flex; justify-content: space-between; border-bottom: 2px solid #3a1e0f; padding-bottom: 14px; margin-bottom: 18px; }
+
+/* ----- modal statis (tanpa JavaScript: :target atau selalu tampil) ----- */
+.h-umum .modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(30, 15, 5, 0.55); align-items: center; justify-content: center; }
+.h-umum .modal:target, .h-umum .modal.tampil { display: flex; }
+.h-umum .modal .isi { background: #fff; border-radius: 14px; padding: 28px; width: 440px; max-width: 92vw; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35); }
+.h-umum .modal .isi h3 { margin-bottom: 8px; }
+.h-umum .modal .baris { margin-top: 18px; justify-content: flex-end; }
+.h-umum .snap { width: 420px; padding: 0 !important; overflow: hidden; }
+.h-umum .snap .kepala { background: #f4f6f8; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dde2e7; }
+.h-umum .snap .tutup { text-decoration: none; font-size: 22px; line-height: 1; color: #555; padding: 0 6px; }
+.h-umum .snap .badan { padding: 20px; }
+.h-umum .snap .metode { display: flex; justify-content: space-between; padding: 12px 14px; border: 1px solid #dde2e7; border-radius: 10px; margin-bottom: 8px; }
+.h-umum .snap .metode.pilih { border-color: #1d5fb4; background: #e4effb; }
+.h-umum .snap .catatan-demo { font-size: 11px; color: #6b6259; text-align: center; margin: 12px 0 0; }
+
+/* ----- teks panjang, FAQ ----- */
+.h-umum .teks-panjang h2 { font-size: 20px; margin-top: 24px; }
+.h-umum details { background: #fff; border-radius: 12px; padding: 14px 20px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+.h-umum details summary { cursor: pointer; font-weight: 600; }
+.h-umum details p { margin: 10px 0 0; }
+
+/* footer: paragraf di kolom Kontak */
+.h-umum .footer-kolom p { margin: 0 0 10px; }
+
+
+/* ----- menu burger di HP: tombol Masuk/Daftar atau akun/Keluar tidak lagi menimpa menu ----- */
+@media (max-width: 800px) {
+  .h-umum .nav .menu .kanan {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    margin: 10px 0 4px;
+  }
+  .h-umum .nav .menu .kanan .btn,
+  .h-umum .nav .menu .kanan .nama-user {
+    width: 100%;
+    margin: 0;
+    padding: 10px 20px;
+    justify-content: center;
+    text-align: center;
+    border-top: 0;
+  }
+}
+
+
+/* ----- tombol bergaris di navbar: tinggi sama dengan tombol Daftar (garis 1,5px dihitung dari padding) ----- */
+.h-umum .nav .menu .kanan .btn.garis { padding: 6.5px 18.5px; }
+@media (max-width: 800px) {
+  .h-umum .nav .menu .kanan .btn.garis { padding: 8.5px 18.5px; }
+}
+
+/* ----- ulasan Kata Mereka: bisa digeser kiri-kanan (tanpa JavaScript) ----- */
+.h-umum .geser {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 2px 14px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #dc6e27 rgba(255, 255, 255, 0.6);
+}
+.h-umum .geser > .kotak { flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start; }
+@media (max-width: 800px) {
+  .h-umum .geser > .kotak { flex-basis: 85%; }
+}
+
+/* ===== PERBAIKAN: footer tidak keluar layar di HP =====
+   Email panjang di kolom Kontak tidak bisa patah baris sehingga
+   grid footer melebar melebihi layar. */
+.h-umum .footer-isi > * { min-width: 0; }
+.h-umum .footer-kolom p, .h-umum .footer-kolom a { overflow-wrap: anywhere; }
+@media (max-width: 800px) {
+  .h-umum .footer-isi { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .h-umum .footer-kolom:last-child { grid-column: 1 / -1; }
+}
+/* isi grid boleh menyusut, tabel panjang tidak mendorong halaman melebar */
+.h-umum .grid > * { min-width: 0; }
+@media (max-width: 800px) {
+  .h-umum .grid-2, .h-umum .grid-3 { grid-template-columns: minmax(0, 1fr); }
+  .h-umum .kotak .tabel td, .h-umum .kotak .tabel th { overflow-wrap: anywhere; }
+}
+.h-umum .baris-demo { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
+
+/* ===== NAVBAR DI TABLET (801px - 1100px) =====
+   padding-right 300px pada .menu membuat navbar melebihi layar tablet. */
+@media (min-width: 801px) and (max-width: 1100px) {
+  .h-umum .nav { gap: 16px; padding: 12px 4vw; }
+  .h-umum .nav .logo { font-size: 14px; }
+  .h-umum .nav .logo img { height: 40px; }
+  .h-umum .menu { padding-right: 0; gap: 20px; justify-content: flex-end; }
+  .h-umum .nav .menu .kanan { margin-left: 12px; }
+}
+/* data pesanan: label di atas nilai pada HP kecil */
+.h-umum .data-baris dd { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 800px) { .h-umum .data-baris { grid-template-columns: 130px minmax(0, 1fr); } }
+@media (max-width: 420px) {
+  .h-umum .data-baris { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .h-umum .data-baris dt { margin-top: 8px; font-size: 12px; }
+}
+@media (max-width: 420px) { .h-umum .hero h1 { font-size: 22px; overflow-wrap: anywhere; } }
+@media (min-width: 801px) and (max-width: 1100px) {
+  .h-umum .nav .menu .kanan { position: static; margin-left: 8px; }
+  .h-umum .nav .menu .kanan .btn { padding: 7px 14px; }
+  .h-umum .footer-isi { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 32px 24px; }
+  .h-umum .footer-brand { grid-column: 1 / -1; }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .h-umum .nav .menu > a { white-space: nowrap; }
+  .h-umum .menu { gap: 16px; }
+  /* tablet: nama pengguna disembunyikan, cukup avatar (nama tetap ada di title dan terbaca pembaca layar) */
+  .h-umum .nav .menu .kanan .nama-user { font-size: 0; padding: 0; background: none; gap: 0; }
+  .h-umum .nav .menu .kanan .nama-user .avatar { font-size: 13px; }
+}
+
+/* ===== PILIH METODE PEMBAYARAN (bisa diklik, tanpa JavaScript) ===== */
+.h-umum .radio-metode { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.h-umum .snap .pilih-metode .metode { cursor: pointer; font-weight: 400; font-size: 15px; transition: border-color .15s, background .15s; }
+.h-umum .snap .pilih-metode .metode:hover { border-color: #1d5fb4; }
+.h-umum .radio-metode:checked + .metode { border-color: #1d5fb4; background: #e4effb; }
+.h-umum .radio-metode:focus-visible + .metode { outline: 3px solid #dc6e27; outline-offset: 2px; }
+.h-umum .pilih-metode .bayar { display: none; margin-top: 12px; }
+.h-umum #m-qris:checked ~ .bayar-qris,
+.h-umum #m-bca:checked ~ .bayar-bca,
+.h-umum #m-bni:checked ~ .bayar-bni,
+.h-umum #m-mandiri:checked ~ .bayar-mandiri { display: block; }
+
+/* ===== NOTA: bagian pembayaran ===== */
+.h-umum .nota .info-bayar { background: #fff4ea; border-radius: 10px; padding: 12px 16px; margin-top: 18px; }
+.h-umum .nota .info-bayar h3 { margin: 0 0 6px; }
+.h-umum .nota .nomor-bayar { font-weight: 700; letter-spacing: 0.06em; }
+
+/* ===== CETAK NOTA: hanya isi nota yang tercetak ===== */
+@media print {
+  @page { size: A4; margin: 14mm; }
+  .h-umum { background: #fff !important; }
+  .h-umum .nav, .h-umum .hero, .h-umum .footer, .h-umum .nota .aksi-nota { display: none !important; }
+  .h-umum .wrap { padding: 0 !important; background: none !important; }
+  .h-umum .nota .kotak { box-shadow: none !important; border: 1px solid #ddd; }
+  .h-umum, .h-umum * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ===== API: galat per kolom dan keadaan memuat ===== */
+.h-umum .galat-kolom { color: #c0392b !important; }
+.h-umum [aria-invalid="true"] { border-color: #c0392b !important; }
+.h-umum .memuat { text-align: center; color: #6b6259; padding: 28px 12px; }
+.h-umum button:disabled, .h-umum .btn[disabled] { opacity: .65; cursor: progress; }
+.h-umum .grid-mobil > .memuat { grid-column: 1 / -1; }
+.h-umum .label-grup { display: block; font-weight: 500; margin-bottom: 6px; }
+.h-umum [data-form-sewa] .cek input[type="radio"] { margin-right: 8px; }
+
+/* atribut hidden selalu menang atas display dari class (grid/flex) */
+.h-umum [hidden] { display: none !important; }
+.h-umum .foto-profil { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: block; }
+.h-umum .foto-profil.inisial { display: grid; place-items: center; background: #dc6e27; color: #fff; font-weight: 600; font-size: 24px; }

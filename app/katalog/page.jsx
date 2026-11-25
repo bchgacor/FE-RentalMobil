@@ -1,0 +1,12 @@
+import Halaman from "@/components/Halaman";
+import KontenKatalog from "@/components/konten/KontenKatalog";
+
+export const metadata = { title: "Car" };
+
+export default function HalamanKatalog() {
+  return (
+    <Halaman mode="tamu" aktif="katalog" gaya={["katalog"]}>
+      <KontenKatalog />
+    </Halaman>
+  );
+}

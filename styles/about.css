@@ -1,0 +1,152 @@
+/* Dibuat otomatis dari prototipe/css/about.css oleh scripts/scope-css.mjs. Jangan diedit langsung. */
+/* about.html memakai gaya dasar dari index.css (navbar, kotak, footer, dll).
+   File ini hanya berisi tambahan khusus halaman About. */
+
+/* ===== BANNER: lebih pendek dari hero di Home ===== */
+.h-about .hero.banner {
+  padding: 90px 6vw calc(90px + var(--gelombang));
+}
+
+/* ===== TEKS DI KOTAK ===== */
+.h-about .kotak p {
+  margin: 0 0 12px;
+  line-height: 1.8;
+}
+.h-about .kotak p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== OUR PARTNER: logo berjalan dari kanan ke kiri ===== */
+.h-about .partner {
+  overflow: hidden;
+  /* ujung kiri dan kanan memudar halus */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.h-about .partner-jalur {
+  display: flex;
+  align-items: center;
+  gap: 60px; /* jarak antar logo */
+  width: max-content;
+  animation: partner-jalan 40s linear infinite; /* ganti 40s: makin kecil makin cepat */
+}
+.h-about .partner:hover .partner-jalur {
+  animation-play-state: paused;
+}
+.h-about .partner-jalur img {
+  height: 80px; /* TINGGI logo partner */
+  width: auto;
+  display: block;
+}
+@keyframes partner-jalan {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%); /* geser sejauh satu set logo, lalu ulang mulus */
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-about .partner-jalur {
+    animation: none;
+  }
+}
+
+/* ===== MANAGEMENT: foto, nama, jabatan ===== */
+.h-about .grid-orang {
+  grid-template-columns: repeat(4, 1fr);
+}
+.h-about .orang {
+  text-align: center;
+  padding: 14px;
+}
+.h-about .orang img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 12px;
+  background: #e8a672;
+}
+.h-about .orang b {
+  display: block;
+  line-height: 1.3;
+}
+.h-about .orang .jabatan {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #dc6e27;
+  font-weight: 500;
+}
+
+@media (max-width: 800px) {
+  .h-about .hero.banner {
+    padding: 60px 9vw calc(60px + var(--gelombang));
+  }
+  .h-about .grid-orang {
+    grid-template-columns: 1fr 1fr; /* tetap 2 kolom di HP */
+    gap: 12px;
+  }
+  .h-about .partner-jalur {
+    gap: 40px;
+  }
+  .h-about .partner-jalur img {
+    height: 60px;
+  }
+}
+
+/* ===== FOTO DI TENTANG KAMI ===== */
+.h-about .galeri {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 foto per baris */
+  gap: 10px;
+  margin-top: 18px;
+}
+.h-about .galeri img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* ===== VISI & MISI: gambar di kiri, teks di kanan ===== */
+.h-about .visimisi {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.h-about .visimisi > img {
+  width: 42%; /* ukuran gambar visi/misi */
+  aspect-ratio: 1 / 1.16;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.h-about .visimisi > div {
+  flex: 1;
+}
+
+@media (max-width: 800px) {
+  .h-about .galeri {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .h-about .visimisi {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .h-about .visimisi > img {
+    width: 60%;
+    align-self: center;
+  }
+}
