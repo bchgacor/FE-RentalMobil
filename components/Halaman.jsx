@@ -1,15 +1,17 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Penjaga from "./sesi/Penjaga";
 
 // Kerangka semua halaman publik: navbar, isi halaman, footer.
 // gaya: CSS tambahan khusus halaman ("katalog", "pesan", "riwayat", "about").
-export default function Halaman({ mode = "tamu", aktif, gaya = [], children }) {
+// akses: kosong = boleh siapa saja; "user" = wajib login pelanggan; "tamu-saja" = halaman masuk/daftar.
+export default function Halaman({ aktif, gaya = [], akses, children }) {
   const kelas = ["h-umum", ...gaya.map((g) => `h-${g}`)].join(" ");
   return (
     <div className={kelas}>
-      <Navbar mode={mode} aktif={aktif} />
-      {children}
-      <Footer base={mode === "pelanggan" ? "/user" : ""} />
+      <Navbar aktif={aktif} />
+      {akses ? <Penjaga akses={akses}>{children}</Penjaga> : children}
+      <Footer />
     </div>
   );
 }

@@ -5,7 +5,7 @@ export const metadata = { title: "About Us" };
 
 export default function HalamanAbout() {
   return (
-    <Halaman mode="tamu" aktif="about" gaya={["about"]}>
+    <Halaman aktif="about" gaya={["about"]}>
       <KontenAbout />
     </Halaman>
   );

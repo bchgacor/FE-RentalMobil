@@ -1,20 +1,24 @@
-import Link from "next/link";
+"use client";
 
-// Navbar halaman publik. mode "tamu" untuk pengunjung, "pelanggan" untuk yang sudah masuk.
+import Link from "next/link";
+import { useSesi } from "@/components/sesi/SesiProvider";
+import { inisial } from "@/lib/format";
+
+// Navbar halaman publik. Menu berubah sesuai akun yang sedang login (dibaca dari SesiProvider).
 // aktif: kunci menu yang sedang dibuka (home, about, katalog, riwayat).
 const MENU = [
-  { kunci: "home", label: "Home", path: "" },
-  { kunci: "about", label: "About Us", path: "/about" },
-  { kunci: "katalog", label: "Car", path: "/katalog" },
+  { kunci: "home", label: "Home", href: "/" },
+  { kunci: "about", label: "About Us", href: "/about" },
+  { kunci: "katalog", label: "Car", href: "/katalog" },
 ];
 
-export default function Navbar({ mode = "tamu", aktif }) {
-  const base = mode === "pelanggan" ? "/user" : "";
-  const menu =
-    mode === "pelanggan" ? [...MENU, { kunci: "riwayat", label: "Riwayat Pemesanan", path: "/riwayat" }] : MENU;
+export default function Navbar({ aktif }) {
+  const { akun, keluar } = useSesi();
+  const pelanggan = akun?.role === "user";
+  const menu = pelanggan ? [...MENU, { kunci: "riwayat", label: "Riwayat Pemesanan", href: "/user/riwayat" }] : MENU;
   return (
     <nav className="nav">
-      <Link className="logo" href={base || "/"}>
+      <Link className="logo" href="/">
         <img src="/img/logo.png" alt="Logo GantengnyaJatim Group" /> GANTENGNYAJATIMGROUP
       </Link>
       <input type="checkbox" id="burger-cek" className="burger-cek" aria-hidden="true" />
@@ -23,18 +27,24 @@ export default function Navbar({ mode = "tamu", aktif }) {
       </label>
       <div className="menu" id="menu">
         {menu.map((m) => (
-          <Link key={m.kunci} className={m.kunci === aktif ? "aktif" : undefined} href={base + m.path || "/"}>
+          <Link key={m.kunci} className={m.kunci === aktif ? "aktif" : undefined} href={m.href}>
             {m.label}
           </Link>
         ))}
-        {mode === "pelanggan" ? (
+        {pelanggan ? (
           <div className="kanan">
-            <Link className="nama-user" href="/user/profil" title="Profil">
-              <span className="avatar">BS</span>
-              <span>Budi Santoso</span>
+            <Link className="nama-user" href="/user/profil" title={`Profil ${akun.nama}`}>
+              <span className="avatar">{inisial(akun.nama)}</span>
+              <span>{akun.nama}</span>
             </Link>
-            <Link className="btn garis" href="/">
+            <button className="btn garis" type="button" onClick={keluar}>
               Keluar
+            </button>
+          </div>
+        ) : akun?.role === "admin" ? (
+          <div className="kanan">
+            <Link className="btn" href="/admin/dashboard">
+              Panel admin
             </Link>
           </div>
         ) : (

@@ -1,10 +1,16 @@
 # Frontend Rental Mobil GantengnyaJatim Group (Next.js)
 
-Tahap **Pertemuan 10: Design to Code & Slicing**. Desain (HTML/CSS hasil dari Figma) dipindahkan ke Next.js dan dipecah menjadi komponen. Semua halaman sudah bisa dibuka dan saling terhubung, tetapi **datanya masih data contoh** (folder `data/`). Sambungan ke back-end Laravel dikerjakan di Pertemuan 11.
+Tahap **Pertemuan 11: Integrasi API**. Tampilan hasil slicing Pertemuan 10 sekarang tersambung ke back-end Laravel (repo `D4MAX/BE-RentalMobil`): login dengan token, katalog, pemesanan, pembayaran Midtrans, riwayat, profil, dan semua halaman admin memakai data API. Folder `data/` (data contoh) sudah dihapus.
 
 ## Menjalankan
 
-Butuh Node.js 20 atau lebih baru.
+Butuh Node.js 20 atau lebih baru, dan back-end Laravel yang sedang berjalan.
+
+1. Salin `.env.example` menjadi `.env.local`, lalu isi:
+   - `NEXT_PUBLIC_API_URL` alamat API, bawaan `http://localhost:8000/api/v1`
+   - `NEXT_PUBLIC_MIDTRANS_CLIENT_KEY` **Client Key** Midtrans sandbox (jangan pernah Server Key)
+2. Di `.env` back-end tambahkan `FRONTEND_URL=http://localhost:3000`. Ini dipakai untuk izin CORS dan untuk tautan di email (verifikasi akun dan reset kata sandi).
+3. Jalankan:
 
 ```bash
 npm install
@@ -13,33 +19,68 @@ npm run lint     # pemeriksaan kode (harus tanpa error)
 npm run build    # cek semua halaman bisa dibangun
 ```
 
-Halaman awal:
-- Pengunjung: `/`
-- Pelanggan (sudah masuk, contoh: Budi Santoso): `/user`
-- Admin: `/admin/masuk` (isi email dan kata sandi apa saja, lalu Login)
+Akun admin awal mengikuti seeder back-end. Saat login pertama admin wajib mengganti kata sandi (`/admin/ganti-sandi`).
+
+## Cara kerja integrasi
+
+| Bagian | File | Keterangan |
+|---|---|---|
+| Panggilan API | `lib/api.js` | `api.get/post/put/patch/del`, token Bearer otomatis, galat jadi `ApiError` (status, code, galat per kolom 422), `unduh()` untuk PDF |
+| Sesi login | `components/sesi/SesiProvider.jsx` | token dan akun di `localStorage`; 401 = sesi habis, diarahkan ke halaman login |
+| Penjagaan halaman | `components/sesi/Penjaga.jsx` | `akses="user"`, `"admin"`, atau `"tamu-saja"`; tamu diarahkan ke login dengan `?next=` |
+| Memuat data | `lib/useMuat.js` | status memuat, galat, dan muat ulang |
+| Kirim form | `lib/useKirim.js` | tombol sibuk dan pesan galat; galat 422 tampil di bawah isian (`components/ui/Galat.jsx`) |
+| Pembayaran | `lib/midtrans.js` | Snap Midtrans dimuat saat tombol bayar diklik |
+
+## Halaman
+
+| Alamat | Isi | API |
+|---|---|---|
+| `/katalog`, `/katalog-hasil` | cari dan daftar mobil | `GET /katalog/tipe` |
+| `/pesan/[id]` | form pesan | `GET /katalog/tipe/{id}`, `POST /pemesanan` |
+| `/masuk`, `/daftar`, `/verifikasi-email`, `/lupa-sandi`, `/reset-password` | akun pelanggan | `/auth/*` |
+| `/user/riwayat`, `/user/pesanan/[id]`, `.../bayar`, `.../nota` | riwayat, detail, bayar, nota PDF, batal, ulasan | `/pemesanan/*` |
+| `/user/profil` | profil dan ganti kata sandi | `/profil` |
+| `/admin/masuk`, `/admin/ganti-sandi` | login admin | `/auth/login`, `/profil/password` |
+| `/admin/dashboard` | ringkasan dan tugas admin | `GET /admin/dashboard` |
+| `/admin/pesanan`, `/admin/pesanan/[id]` | daftar, saring, cari, detail dan semua tindakan | `/admin/pemesanan/*` |
+| `/admin/pesanan/[id]/serah-terima` | pilih unit, foto jaminan, kondisi awal | `unit-tersedia`, `serah-terima` |
+| `/admin/pesanan/[id]/pengembalian` | pemeriksaan, ringkasan biaya dari back-end | `pengembalian/preview`, `pengembalian` |
+| `/admin/kelola-mobil`, `.../tipe/[id]`, `.../unit/[id]` (`baru` untuk tambah) | tipe dan unit, foto, status, pulihkan dari tempat sampah | `/admin/tipe`, `/admin/unit` |
+| `/admin/servis` | catat, selesai, batal servis, interval | `/admin/servis/*` |
+| `/admin/laporan` | laporan per periode dan status, unduh PDF | `/admin/laporan`, `/admin/laporan/pdf` |
+
+Halaman informasi (`/`, `/about`, `/faq`, `/syarat`, `/privasi`) tetap statis.
+
+## Uji end-to-end
+
+Folder `e2e/` berisi back-end tiruan (`mock-server.mjs`, meniru jawaban API Laravel) dan dua skrip Playwright (Python):
+`uji_user.py` (39 pemeriksaan alur pelanggan) dan `uji_admin.py` (53 pemeriksaan alur admin, termasuk tampilan HP 390 px).
+
+```bash
+pip install playwright && python -m playwright install chromium
+npm run build && npx next start -p 3100
+FRONTEND_URL=http://localhost:3100 node e2e/mock-server.mjs   # terminal lain; jalankan ulang sebelum tiap skrip
+python e2e/uji_user.py
+python e2e/uji_admin.py
+```
+
+Skrip memakai `.env.local` dengan `NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1` (alamat back-end tiruan). Tangkapan layar tersimpan di `e2e/hasil/`.
 
 ## Struktur folder
 
 ```
 app/                  halaman (setiap folder = satu alamat URL)
-  page.jsx            beranda pengunjung  -> /
-  katalog/ ...        halaman pengunjung  -> /katalog, /masuk, /daftar, ...
-  pesan/[slug]/       satu halaman pesan untuk semua mobil -> /pesan/ds-xl7, /pesan/ts-brio, ...
-  user/ ...           halaman pelanggan   -> /user, /user/riwayat, /user/pesan/[slug], ...
-  admin/ ...          halaman admin       -> /admin/dashboard, /admin/pesanan, ...
-components/           komponen yang dipakai ulang
-  Halaman.jsx         kerangka halaman publik (Navbar + isi + Footer)
-  Navbar.jsx, Footer.jsx
-  Modal.jsx           pop-up tanpa JavaScript (CSS :target)
-  Badge.jsx, Plat.jsx, Tahapan.jsx
-  admin/              PanelAdmin (sidebar), HalamanAdmin (topbar), SaringStatus
-  katalog/            KartuMobil, GaleriMobil, DetailMobil, FormPesan, HalamanPesan
-  riwayat/            KartuPesanan, FormNilai
-  konten/             isi halaman yang sama untuk pengunjung dan pelanggan (About, FAQ, Katalog, ...)
-data/                 data contoh: mobil.js, riwayat.js, pesanan.js (diganti API di Pertemuan 11)
-lib/format.js         format rupiah
-styles/               CSS dari prototipe HTML
-public/img, public/dokumen   gambar dan contoh PDF nota/laporan
+components/
+  sesi/               SesiProvider, Penjaga (auth guard)
+  akun/               form masuk, daftar, lupa/reset/ganti kata sandi
+  katalog/, pesan/    pencarian, kartu mobil, form pesan
+  pesanan/, profil/   halaman pelanggan
+  admin/              PanelAdmin, HalamanAdmin, Konfirmasi, pesanan/, mobil/, lain/ (dashboard, servis, laporan)
+  ui/Galat.jsx        pesan galat
+lib/                  api.js, format.js, status.js, labelAdmin.js, useMuat.js, useKirim.js, midtrans.js
+styles/               CSS dari prototipe HTML (tambahan.css untuk keperluan halaman API)
+e2e/                  uji end-to-end
 ```
 
 ### Tentang CSS
@@ -54,70 +95,3 @@ CSS diambil langsung dari prototipe HTML supaya tampilannya sama persis. Karena 
 
 File di `styles/` dibuat dari CSS prototipe dengan `node scripts/scope-css.mjs <folder-css-prototipe>`. Font Poppins disimpan di proyek lewat paket `@fontsource/poppins`.
 
-## Checklist halaman
-
-Semua halaman di bawah sudah dibuat, bisa dibuka, dan tampilannya dibandingkan dengan prototipe HTML (lebar 1280 px dan 390 px).
-
-| Alamat | Halaman | Status |
-|---|---|---|
-| `/about` | About Us | ✓ |
-| `/admin/dashboard` | Dashboard Admin - Admin GantengnyaJatim Group | ✓ |
-| `/admin/detail-berjalan` | Detail RM-20261101-0004 - Admin GantengnyaJatim Group | ✓ |
-| `/admin/detail-dibatalkan` | Detail RM-20261020-0001 - Admin GantengnyaJatim Group | ✓ |
-| `/admin/detail-dikonfirmasi` | Detail RM-20261103-0010 - Admin GantengnyaJatim Group | ✓ |
-| `/admin/detail-menunggu-pembayaran` | Detail RM-20261104-0012 - Admin GantengnyaJatim Group | ✓ |
-| `/admin/detail-pengajuan-pembatalan` | Detail RM-20261102-0006 - Admin GantengnyaJatim Group | ✓ |
-| `/admin/detail-selesai-lunas` | Detail RM-20261018-0003 - Admin GantengnyaJatim Group | ✓ |
-| `/admin/detail-selesai` | Detail RM-20261024-0002 - Admin GantengnyaJatim Group | ✓ |
-| `/admin/kelola-mobil` | Kelola Mobil - Admin GantengnyaJatim Group | ✓ |
-| `/admin/laporan` | Laporan - Admin GantengnyaJatim Group | ✓ |
-| `/admin/masuk` | Masuk Admin | ✓ |
-| `/admin/pesanan` | Pesanan - Admin GantengnyaJatim Group | ✓ |
-| `/admin/selesaikan-pesanan` | Selesaikan pesanan - Admin GantengnyaJatim Group | ✓ |
-| `/admin/serahkan-unit` | Serahkan unit - Admin GantengnyaJatim Group | ✓ |
-| `/admin/servis` | Servis - Admin GantengnyaJatim Group | ✓ |
-| `/admin/tipe-form` | Tipe mobil - Admin GantengnyaJatim Group | ✓ |
-| `/admin/unit-form` | Unit mobil - Admin GantengnyaJatim Group | ✓ |
-| `/cek-email` | Cek Email | ✓ |
-| `/daftar` | Daftar | ✓ |
-| `/faq` | FAQ | ✓ |
-| `/katalog-hasil` | Car | ✓ |
-| `/katalog` | Car | ✓ |
-| `/lupa-sandi-terkirim` | Lupa Kata Sandi | ✓ |
-| `/lupa-sandi` | Lupa Kata Sandi | ✓ |
-| `/masuk` | Masuk | ✓ |
-| `/` | Home | ✓ |
-| `/pesan/[mobil]` | Pesan ${cariMobil(slug)?.nama ??  | ✓ |
-| `/privasi` | Kebijakan Privasi | ✓ |
-| `/reset-sandi` | Buat Password Baru | ✓ |
-| `/syarat` | Syarat dan Ketentuan | ✓ |
-| `/user/about` | About Us | ✓ |
-| `/user/detail-berjalan` | Detail Pesanan | ✓ |
-| `/user/detail-dibatalkan` | Detail Pesanan | ✓ |
-| `/user/detail-dikonfirmasi` | Detail Pesanan | ✓ |
-| `/user/detail-menunggu-pembayaran` | Detail Pesanan | ✓ |
-| `/user/detail-pengajuan-pembatalan` | Detail Pesanan | ✓ |
-| `/user/detail-selesai` | Detail Pesanan | ✓ |
-| `/user/faq` | FAQ | ✓ |
-| `/user/katalog-hasil` | Car | ✓ |
-| `/user/katalog` | Car | ✓ |
-| `/user/nota-va-bca` | Nota (VA BCA) | ✓ |
-| `/user/nota-va-bni` | Nota (VA BNI) | ✓ |
-| `/user/nota-va-mandiri` | Nota (VA Mandiri) | ✓ |
-| `/user/nota` | Nota (QRIS) | ✓ |
-| `/user` | Home | ✓ |
-| `/user/pembayaran` | Pembayaran | ✓ |
-| `/user/pesan/[mobil]` | Pesan ${cariMobil(slug)?.nama ??  | ✓ |
-| `/user/privasi` | Kebijakan Privasi | ✓ |
-| `/user/profil` | Edit Profile | ✓ |
-| `/user/riwayat` | Riwayat Pemesanan | ✓ |
-| `/user/syarat` | Syarat dan Ketentuan | ✓ |
-| `/verifikasi` | Verifikasi Email | ✓ |
-
-Catatan:
-- 48 file `form-pesan-...html` di prototipe sekarang menjadi **satu** halaman dinamis `pesan/[slug]` (25 mobil, dibuat statis lewat `generateStaticParams`).
-- Halaman katalog, riwayat, dan daftar pesanan admin sudah memakai data dari `data/` dan komponen (`KartuMobil`, `KartuPesanan`, tabel dengan `.map`), jadi tinggal diganti data API.
-
-## Untuk Pertemuan 11 (integrasi API)
-
-Yang akan ditambahkan: file `.env.local` berisi alamat API, pemanggilan API menggantikan isi folder `data/`, penanganan loading/error, dan penjagaan halaman berdasarkan login (auth guard).

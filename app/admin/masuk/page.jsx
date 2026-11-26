@@ -1,55 +1,42 @@
-import Halaman from "@/components/Halaman";
 import Link from "next/link";
+import { Suspense } from "react";
+import Halaman from "@/components/Halaman";
+import Penjaga from "@/components/sesi/Penjaga";
+import FormMasuk from "@/components/akun/FormMasuk";
 
-export const metadata = { title: "Masuk Admin" };
+export const metadata = { title: "Login Admin" };
 
-export default function HalamanMasuk() {
+export default function HalamanMasukAdmin() {
   return (
-    <Halaman mode="tamu">
-      <section className="hero banner">
-        <h1>
-          {"MASUK "}
-          <span>ADMIN</span>
-        </h1>
-      </section>
-      <main className="wrap wrap-form">
-        <div className="kotak kartu-akun">
-          <div className="tab-akun">
-            <Link href="/admin/masuk" className="aktif">
-              Login Admin
-            </Link>
+    <Halaman>
+      <Penjaga akses="tamu-saja" peran="admin">
+        <section className="hero banner">
+          <h1>
+            LOGIN <span>ADMIN</span>
+          </h1>
+        </section>
+        <main className="wrap wrap-form">
+          <div className="kotak kartu-akun">
+            <div className="tab-akun">
+              <Link href="/admin/masuk" className="aktif">
+                Login Admin
+              </Link>
+            </div>
+            <h1>Masuk</h1>
+            <p className="abu tengah kecil" style={{ marginTop: "-6px" }}>
+              Khusus pengelola GantengnyaJatim Group.
+            </p>
+            <Suspense fallback={<p className="memuat">Memuat...</p>}>
+              <FormMasuk peran="admin" />
+            </Suspense>
+            <p className="tengah kecil" style={{ margin: "16px 0 0" }}>
+              <Link href="/masuk" className="tautan">
+                Bukan admin? Masuk sebagai pelanggan
+              </Link>
+            </p>
           </div>
-          <h1>Masuk</h1>
-          <p className="abu tengah kecil" style={{ marginTop: "-6px" }}>
-            Khusus pengelola GantengnyaJatim Group.
-          </p>
-          <form action="/admin/dashboard" method="get">
-            <div className="field">
-              <label htmlFor="email">Email</label>
-              <input id="email" name="email" type="email" required autoComplete="username" />
-            </div>
-            <div className="field">
-              <label htmlFor="sandi">Kata sandi</label>
-              <input id="sandi" name="password" type="password" required autoComplete="current-password" />
-              <p className="hint">
-                {"Lupa kata sandi? Hubungi pemilik usaha lewat "}
-                <a href="https://wa.me/6281234567890" className="tautan" target="_blank" rel="noopener">
-                  WhatsApp
-                </a>
-                .
-              </p>
-            </div>
-            <button className="btn blok" type="submit">
-              Login
-            </button>
-          </form>
-          <p className="tengah kecil" style={{ margin: "16px 0 0" }}>
-            <Link href="/masuk" className="tautan">
-              Bukan admin? Masuk sebagai pelanggan
-            </Link>
-          </p>
-        </div>
-      </main>
+        </main>
+      </Penjaga>
     </Halaman>
   );
 }

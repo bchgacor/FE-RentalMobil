@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Penjaga from "@/components/sesi/Penjaga";
+import TombolKeluar from "./TombolKeluar";
 
 // Kerangka halaman admin dengan sidebar (Dashboard, Kelola Mobil, Pesanan, Servis, Laporan).
 const MENU = [
@@ -28,10 +30,10 @@ export default function PanelAdmin({ aktif, children }) {
             ))}
           </nav>
           <div className="keluar">
-            <Link href="/admin/masuk">Keluar</Link>
+            <TombolKeluar />
           </div>
         </aside>
-        {children}
+        <Penjaga akses="admin">{children}</Penjaga>
       </div>
     </div>
   );

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Penjaga from "@/components/sesi/Penjaga";
+import TombolKeluar from "./TombolKeluar";
 
 // Kerangka halaman kerja admin tanpa sidebar (detail pesanan, serah terima, form tipe/unit).
 export default function HalamanAdmin({ children }) {
@@ -9,11 +11,9 @@ export default function HalamanAdmin({ children }) {
           <img src="/img/logo.png" alt="Dashboard admin" />
         </Link>
         <span className="peran">Admin Rental</span>
-        <Link className="btn garis sm" href="/admin/masuk">
-          Keluar
-        </Link>
+        <TombolKeluar className="btn garis sm" />
       </header>
-      {children}
+      <Penjaga akses="admin">{children}</Penjaga>
     </div>
   );
 }

@@ -5,7 +5,7 @@ export const metadata = { title: "Halaman tidak ditemukan" };
 
 export default function TidakDitemukan() {
   return (
-    <Halaman mode="tamu">
+    <Halaman>
       <section className="hero banner">
         <h1>
           HALAMAN <span>TIDAK DITEMUKAN</span>

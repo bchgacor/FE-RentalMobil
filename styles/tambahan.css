@@ -1,0 +1,10 @@
+/* Gaya tambahan khusus versi Next.js (tidak ada di prototipe HTML). */
+
+/* Tombol saring status yang memakai alamat halaman (?status=...), bukan :target */
+.h-admin .saring a.aktif { background: #e07020; border-color: #e07020; color: #fff; }
+.h-admin .saring:has(a.aktif) a.semua:not(.aktif) { background: #fff; border-color: #d9d2c7; color: inherit; }
+.h-admin .saring .cari-pesanan { display: flex; gap: 8px; margin-left: auto; flex: 1 1 260px; max-width: 420px; }
+.h-admin .saring .cari-pesanan input { flex: 1; min-width: 0; }
+
+/* Tombol yang tampil seperti tautan */
+.h-umum button.tautan, .h-admin button.tautan { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; }

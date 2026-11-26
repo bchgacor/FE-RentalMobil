@@ -5,7 +5,7 @@ export const metadata = { title: "FAQ" };
 
 export default function HalamanFaq() {
   return (
-    <Halaman mode="tamu">
+    <Halaman>
       <KontenFaq />
     </Halaman>
   );

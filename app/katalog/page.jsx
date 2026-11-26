@@ -5,7 +5,7 @@ export const metadata = { title: "Car" };
 
 export default function HalamanKatalog() {
   return (
-    <Halaman mode="tamu" aktif="katalog" gaya={["katalog"]}>
+    <Halaman aktif="katalog" gaya={["katalog"]}>
       <KontenKatalog />
     </Halaman>
   );

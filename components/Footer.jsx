@@ -2,7 +2,8 @@ import Link from "next/link";
 
 const WA = "https://wa.me/6281234567890";
 
-export default function Footer({ base = "" }) {
+export default function Footer() {
+  const base = "";
   return (
     <footer className="footer">
       <div className="footer-isi">

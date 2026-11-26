@@ -5,7 +5,7 @@ export const metadata = { title: "Syarat dan Ketentuan" };
 
 export default function HalamanSyarat() {
   return (
-    <Halaman mode="tamu">
+    <Halaman>
       <KontenSyarat />
     </Halaman>
   );

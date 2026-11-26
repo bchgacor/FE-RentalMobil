@@ -11,6 +11,8 @@ import "../styles/about.css";
 import "../styles/katalog.css";
 import "../styles/pesan.css";
 import "../styles/admin.css";
+import "../styles/tambahan.css";
+import SesiProvider from "@/components/sesi/SesiProvider";
 
 export const metadata = {
   title: { default: "GantengnyaJatim Group", template: "%s - GantengnyaJatim Group" },
@@ -20,7 +22,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>
+        <SesiProvider>{children}</SesiProvider>
+      </body>
     </html>
   );
 }

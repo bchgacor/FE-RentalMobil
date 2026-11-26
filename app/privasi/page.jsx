@@ -5,7 +5,7 @@ export const metadata = { title: "Kebijakan Privasi" };
 
 export default function HalamanPrivasi() {
   return (
-    <Halaman mode="tamu">
+    <Halaman>
       <KontenPrivasi />
     </Halaman>
   );

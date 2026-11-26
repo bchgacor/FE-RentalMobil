@@ -1,7 +1,11 @@
-// Garis tahapan pesanan. selesai: berapa tahap yang sudah dilalui (0-4).
+import { st } from "@/lib/status";
+
+// Garis tahapan pesanan sesuai status dari back-end.
 const TAHAP = ["Menunggu pembayaran", "Dikonfirmasi", "Berjalan", "Selesai"];
 
-export default function Tahapan({ selesai }) {
+export default function Tahapan({ status }) {
+  if (status === "dibatalkan") return <p className="abu kecil">Pesanan ini dibatalkan.</p>;
+  const selesai = st(status).tahap;
   return (
     <div className="tahap" aria-label="Tahapan pesanan">
       {TAHAP.map((t, i) => (

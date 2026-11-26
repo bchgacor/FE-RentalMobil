@@ -5,7 +5,7 @@ export const metadata = { title: "Home" };
 
 export default function HalamanGuest() {
   return (
-    <Halaman mode="tamu" aktif="home">
+    <Halaman aktif="home">
       <KontenIndex />
     </Halaman>
   );
